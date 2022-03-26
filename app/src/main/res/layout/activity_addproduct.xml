@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.Activity_AddProduct">
+
+    <RelativeLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:background="@drawable/bg_bottom_primary"
+
+        android:elevation="30dp">
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+
+            android:layout_marginStart="20dp"
+
+            android:background="@drawable/ic_back_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+            android:layout_marginStart="20dp"
+            android:text="Create new account"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_below="@id/appBar"
+
+        android:layout_marginTop="15dp"
+
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+
+            android:paddingHorizontal="25dp"
+            android:paddingVertical="20dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="240dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+
+                android:src="@drawable/img_addphoto"
+                app:civ_border_color="@color/purple_500"
+                app:civ_border_width="5dp" />
+
+
+            <TextView
+                android:id="@+id/addGalley"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_corner_primary"
+
+                android:drawableStart="@drawable/ic_addfromgallery_white"
+                android:drawablePadding="15dp"
+
+                android:elevation="20dp"
+                android:padding="15dp"
+                android:text="Add an image"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+
+            <!--        Name-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginVertical="10dp"
+                android:layout_marginStart="10dp"
+
+                android:text="Username"
+                android:textColor="@color/purple_500"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@drawable/bg_stroke_primarycolor"
+
+                android:inputType="textPersonName"
+
+                android:padding="10dp"
+                android:paddingStart="25dp" />
+
+            <!--        Price-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+
+                android:text="Password"
+                android:textColor="@color/purple_500"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/etPasswordLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/purple_200">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:background="@drawable/bg_stroke_primarycolor"
+
+                    android:inputType="textPassword"
+
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:paddingStart="25dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--        First name-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginVertical="10dp"
+                android:layout_marginStart="10dp"
+
+                android:text="First name"
+                android:textColor="@color/purple_500"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/firstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@drawable/bg_stroke_primarycolor"
+
+                android:inputType="textPersonName"
+
+                android:padding="10dp"
+                android:paddingStart="25dp" />
+
+            <!--        Last name-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginVertical="10dp"
+                android:layout_marginStart="10dp"
+
+                android:text="Last name"
+                android:textColor="@color/purple_500"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/lastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@drawable/bg_stroke_primarycolor"
+
+                android:inputType="textPersonName"
+
+                android:padding="10dp"
+                android:paddingStart="25dp" />
+
+            <!--        Gmail-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginVertical="10dp"
+                android:layout_marginStart="10dp"
+
+                android:text="Gmail"
+                android:textColor="@color/purple_500"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/gmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@drawable/bg_stroke_primarycolor"
+
+                android:inputType="textEmailAddress"
+
+                android:padding="10dp"
+                android:paddingStart="25dp" />
+
+            <!--        Phone number-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginVertical="10dp"
+                android:layout_marginStart="10dp"
+
+                android:text="Phone number"
+                android:textColor="@color/purple_500"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/phonenumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@drawable/bg_stroke_primarycolor"
+
+                android:inputType="phone"
+
+                android:padding="10dp"
+                android:paddingStart="25dp" />
+
+            <!--        Address-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginVertical="10dp"
+                android:layout_marginStart="10dp"
+
+                android:text="Address"
+                android:textColor="@color/purple_500"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="100"
+
+                    android:background="@drawable/bg_stroke_primarycolor"
+
+                    android:inputType="textPersonName"
+
+                    android:padding="12dp"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/btn_getlocation"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/bg_corner_primary"
+
+                    android:src="@drawable/ic_location_primary"
+
+                    android:padding="10dp"/>
+            </LinearLayout>
+
+            <!--            Button creat new account-->
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+
+                android:layout_gravity="end"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+
+                android:background="@drawable/bg_round_primarycolor"
+                android:elevation="50dp"
+
+                android:text="+"
+                android:textColor="@color/white"
+                android:textSize="45sp" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

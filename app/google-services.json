@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "600817144861",
+    "project_id": "hamina-database",
+    "storage_bucket": "hamina-database.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600817144861:android:9dd8c4472e90eac57a62f4",
+        "android_client_info": {
+          "package_name": "com.example.hamina"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "600817144861-5banfubgimdb1rmqv5eeedkc3ctmt143.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hamina",
+            "certificate_hash": "615dd939fe90f48a49abc972f2757906f1f6e484"
+          }
+        },
+        {
+          "client_id": "600817144861-ks46sub30c2pb8eg4smsqru4m1a60i3b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDl4ffbI-tKfsRo1vBPa-1x8zuoCOpE5Ws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "600817144861-ks46sub30c2pb8eg4smsqru4m1a60i3b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
