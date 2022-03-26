@@ -100,6 +100,7 @@ class Activity_Signup : AppCompatActivity() {
             )
 
             if (phonenumber.length != 10) {
+
                 hideDialog()
                 binding.phonenumber.text.clear()
                 Toast.makeText(
@@ -108,81 +109,99 @@ class Activity_Signup : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             } else
-                if (readData(phonenumber) == 0) {
-                    hideDialog()
-                    binding.phonenumber.text.clear()
-                    Toast.makeText(
-                        this,
-                        "(Phonenumber): Phonenumber has used already!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else
-                    if (password.length < 8 || password.length > 20) {
+                database.child(phonenumber).get().addOnSuccessListener {
+
+                    if (it.exists()) {
                         hideDialog()
-                        binding.password.text?.clear()
+                        binding.phonenumber.text.clear()
                         Toast.makeText(
                             this,
-                            "(Password): At least 8 characters and no more than 20 characters",
+                            "(Phonenumber): Phonenumber has used already!",
                             Toast.LENGTH_SHORT
                         ).show()
                     } else
-                        if (fname.length < 2) {
+                        if (password.length < 8 || password.length > 20) {
+
                             hideDialog()
-                            binding.firstname.text.clear()
+                            binding.password.text?.clear()
                             Toast.makeText(
                                 this,
-                                "(First name): At least 2 characters",
+                                "(Password): At least 8 characters and no more than 20 characters",
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else
-                            if (lname.length < 2) {
+                            if (fname.length < 2) {
+
                                 hideDialog()
-                                binding.lastname.text.clear()
+                                binding.firstname.text.clear()
                                 Toast.makeText(
                                     this,
-                                    "(Last name): At least 2 characters",
+                                    "(First name): At least 2 characters",
                                     Toast.LENGTH_SHORT
                                 ).show()
                             } else
-                                if (address.isEmpty()) {
+                                if (lname.length < 2) {
+
                                     hideDialog()
+                                    binding.lastname.text.clear()
                                     Toast.makeText(
                                         this,
-                                        "(Address): Allow to get current location",
+                                        "(Last name): At least 2 characters",
                                         Toast.LENGTH_SHORT
                                     ).show()
-                                } else {
-                                    database.child(phonenumber).setValue(user)
-                                        .addOnCompleteListener {
-                                            if (it.isSuccessful) {
+                                } else
+                                    if (address.isEmpty()) {
 
-                                                hideDialog()
-                                                binding.firstname.text.clear()
-                                                binding.lastname.text.clear()
-                                                binding.gmail.text.clear()
-                                                binding.phonenumber.text.clear()
-                                                binding.address.setText("")
-                                                binding.password.text?.clear()
-                                                Toast.makeText(
-                                                    this@Activity_Signup,
-                                                    "Successfully",
-                                                    Toast.LENGTH_SHORT
-                                                )
-                                                    .show()
-                                                uploadImgUser(filename)
-                                            } else {
+                                        hideDialog()
+                                        Toast.makeText(
+                                            this,
+                                            "(Address): Allow to get current location",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    } else {
 
-                                                hideDialog()
-                                                Toast.makeText(
-                                                    this@Activity_Signup,
-                                                    "Failed to create new account",
-                                                    Toast.LENGTH_SHORT
-                                                ).show()
+                                        database.child(phonenumber).setValue(user)
+                                            .addOnCompleteListener {
+                                                if (it.isSuccessful) {
+
+                                                    hideDialog()
+                                                    binding.firstname.text.clear()
+                                                    binding.lastname.text.clear()
+                                                    binding.gmail.text.clear()
+                                                    binding.phonenumber.text.clear()
+                                                    binding.address.setText("")
+                                                    binding.password.text?.clear()
+                                                    Toast.makeText(
+                                                        this@Activity_Signup,
+                                                        "Successfully",
+                                                        Toast.LENGTH_SHORT
+                                                    )
+                                                        .show()
+                                                    uploadImgUser(filename)
+                                                    binding.profileImage.setImageURI(Uri.parse("android.resource://$packageName/${R.drawable.img_addphoto}"))
+                                                } else {
+
+                                                    hideDialog()
+                                                    Toast.makeText(
+                                                        this@Activity_Signup,
+                                                        "Failed to create new account",
+                                                        Toast.LENGTH_SHORT
+                                                    ).show()
+                                                }
                                             }
-                                        }
-                                }
+                                    }
+
+                }.addOnFailureListener {
+
+                    hideDialog()
+                    Toast.makeText(
+                        this@Activity_Signup,
+                        "Failed to create new account",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
             hideDialog()
-            binding.profileImage.setImageURI(Uri.parse("android.resource://$packageName/${R.drawable.img_addphoto}"))
         }
 
         binding.addGalley.setOnClickListener {
@@ -288,20 +307,6 @@ class Activity_Signup : AppCompatActivity() {
 
             hideDialog()
         }
-    }
-
-    //    Reading datas
-    private fun readData(phonenumber: String): Int {
-
-        var x = 0
-        database.child(phonenumber).get().addOnSuccessListener {
-
-            if (it.exists())
-                x = 1
-            else
-                x = 0
-        }
-        return x
     }
 
     //    Showing a dialog
