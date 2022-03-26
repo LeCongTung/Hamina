@@ -9,16 +9,14 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
-import android.view.View
 import android.view.Window
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.hamina.R
-import com.example.hamina.databinding.ActivityAddproductBinding
+
+import com.example.hamina.databinding.ActivitySignupBinding
 import com.example.hamina.units.User
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -33,10 +31,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
+class Activity_Signup : AppCompatActivity() {
 
-class Activity_AddProduct : AppCompatActivity() {
-
-    private lateinit var binding: ActivityAddproductBinding
+    private lateinit var binding: ActivitySignupBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var storage: StorageReference
@@ -49,16 +46,12 @@ class Activity_AddProduct : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAddproductBinding.inflate(layoutInflater)
+        binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
 
-//      Permission firebase with features
-
-        val formatname = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss:SSSS", Locale.getDefault())
-        val now = Date()
-        val filename = formatname.format(now)
+//      Permission firebase with
         database = FirebaseDatabase.getInstance().getReference("User")
 
 ////        Spinner
@@ -79,55 +72,117 @@ class Activity_AddProduct : AppCompatActivity() {
 //      Excuting the event
         binding.btnAdd.setOnClickListener {
 
+            val formatname = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss:SSSS", Locale.getDefault())
+            val now = Date()
+            var filename = formatname.format(now)
+
+
             showDialog()
-            val username = binding.username.text.toString().trim()
+            val phonenumber = binding.phonenumber.text.toString().trim()
             val password = binding.password.text.toString().trim()
             val fname = binding.firstname.text.toString().trim()
             val lname = binding.lastname.text.toString().trim()
             val gmail = binding.gmail.text.toString().trim()
-            val phonenumber = binding.phonenumber.text.toString().trim()
             val address = binding.address.text.toString().trim()
             val money = 0
             val totalused = 0
 
             val user = User(
                 filename,
-                username,
+                phonenumber,
                 password,
                 fname,
                 lname,
                 gmail,
-                phonenumber,
                 address,
                 money,
                 totalused
             )
 
-
-            database.child(username).setValue(user).addOnCompleteListener {
-                if (it.isSuccessful) {
-
+            if (phonenumber.length != 10) {
+                hideDialog()
+                binding.phonenumber.text.clear()
+                Toast.makeText(
+                    this,
+                    "(Phonenumber): Only 10 characters",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else
+                if (readData(phonenumber) == 0) {
                     hideDialog()
-                    binding.username.text.clear()
-                    binding.firstname.text.clear()
-                    binding.lastname.text.clear()
-                    binding.gmail.text.clear()
                     binding.phonenumber.text.clear()
-                    binding.address.setText("")
-                    binding.password.text?.clear()
-                    Toast.makeText(this@Activity_AddProduct, "Successfully", Toast.LENGTH_SHORT)
-                        .show()
-                    uploadImgUser(filename)
-                } else {
-
-                    hideDialog()
                     Toast.makeText(
-                        this@Activity_AddProduct,
-                        "Failed to create new account",
+                        this,
+                        "(Phonenumber): Phonenumber has used already!",
                         Toast.LENGTH_SHORT
                     ).show()
-                }
-            }
+                } else
+                    if (password.length < 8 || password.length > 20) {
+                        hideDialog()
+                        binding.password.text?.clear()
+                        Toast.makeText(
+                            this,
+                            "(Password): At least 8 characters and no more than 20 characters",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else
+                        if (fname.length < 2) {
+                            hideDialog()
+                            binding.firstname.text.clear()
+                            Toast.makeText(
+                                this,
+                                "(First name): At least 2 characters",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else
+                            if (lname.length < 2) {
+                                hideDialog()
+                                binding.lastname.text.clear()
+                                Toast.makeText(
+                                    this,
+                                    "(Last name): At least 2 characters",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else
+                                if (address.isEmpty()) {
+                                    hideDialog()
+                                    Toast.makeText(
+                                        this,
+                                        "(Address): Allow to get current location",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                } else {
+                                    database.child(phonenumber).setValue(user)
+                                        .addOnCompleteListener {
+                                            if (it.isSuccessful) {
+
+                                                hideDialog()
+                                                binding.firstname.text.clear()
+                                                binding.lastname.text.clear()
+                                                binding.gmail.text.clear()
+                                                binding.phonenumber.text.clear()
+                                                binding.address.setText("")
+                                                binding.password.text?.clear()
+                                                Toast.makeText(
+                                                    this@Activity_Signup,
+                                                    "Successfully",
+                                                    Toast.LENGTH_SHORT
+                                                )
+                                                    .show()
+                                                uploadImgUser(filename)
+                                            } else {
+
+                                                hideDialog()
+                                                Toast.makeText(
+                                                    this@Activity_Signup,
+                                                    "Failed to create new account",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            }
+                                        }
+                                }
+            hideDialog()
+            binding.profileImage.setImageURI(Uri.parse("android.resource://$packageName/${R.drawable.img_addphoto}"))
         }
 
         binding.addGalley.setOnClickListener {
@@ -145,7 +200,7 @@ class Activity_AddProduct : AppCompatActivity() {
             ) {
 
                 ActivityCompat.requestPermissions(
-                    this@Activity_AddProduct,
+                    this@Activity_Signup,
                     arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
                     REQUEST_PERMISSION_REQUEST_CODE
                 )
@@ -155,6 +210,7 @@ class Activity_AddProduct : AppCompatActivity() {
         }
     }
 
+    //    Getting current location
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -191,11 +247,11 @@ class Activity_AddProduct : AppCompatActivity() {
             return
         }
 
-        LocationServices.getFusedLocationProviderClient(this@Activity_AddProduct)
+        LocationServices.getFusedLocationProviderClient(this@Activity_Signup)
             .requestLocationUpdates(locationRequest, object : LocationCallback() {
                 override fun onLocationResult(p0: LocationResult) {
                     super.onLocationResult(p0)
-                    LocationServices.getFusedLocationProviderClient(this@Activity_AddProduct)
+                    LocationServices.getFusedLocationProviderClient(this@Activity_Signup)
                         .removeLocationUpdates(this)
                     if (!p0.equals(null) && p0.locations.size >= 0) {
                         var locationIndex = p0.locations.size - 1
@@ -213,7 +269,7 @@ class Activity_AddProduct : AppCompatActivity() {
         Toast.makeText(this, "Get current location successfully", Toast.LENGTH_SHORT).show()
     }
 
-
+    //      Picking an image
     private val showImagePicker = registerForActivityResult(ActivityResultContracts.GetContent()) {
 
         imageUri = it
@@ -234,6 +290,21 @@ class Activity_AddProduct : AppCompatActivity() {
         }
     }
 
+    //    Reading datas
+    private fun readData(phonenumber: String): Int {
+
+        var x = 0
+        database.child(phonenumber).get().addOnSuccessListener {
+
+            if (it.exists())
+                x = 1
+            else
+                x = 0
+        }
+        return x
+    }
+
+    //    Showing a dialog
     private fun showDialog() {
 
         dialog = Dialog(this)

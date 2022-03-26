@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Activity_AddProduct">
+    tools:context=".activities.Activity_Signup">
 
     <RelativeLayout
         android:id="@+id/appBar"
@@ -88,7 +88,7 @@
                 android:textStyle="bold" />
 
 
-            <!--        Name-->
+            <!--        Phone number-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -96,19 +96,19 @@
                 android:layout_marginVertical="10dp"
                 android:layout_marginStart="10dp"
 
-                android:text="Username"
+                android:text="Phone number"
                 android:textColor="@color/purple_500"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/username"
+                android:id="@+id/phonenumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
                 android:background="@drawable/bg_stroke_primarycolor"
 
-                android:inputType="textPersonName"
+                android:inputType="phone"
 
                 android:padding="10dp"
                 android:paddingStart="25dp" />
@@ -218,31 +218,6 @@
                 android:background="@drawable/bg_stroke_primarycolor"
 
                 android:inputType="textEmailAddress"
-
-                android:padding="10dp"
-                android:paddingStart="25dp" />
-
-            <!--        Phone number-->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_marginVertical="10dp"
-                android:layout_marginStart="10dp"
-
-                android:text="Phone number"
-                android:textColor="@color/purple_500"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/phonenumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:background="@drawable/bg_stroke_primarycolor"
-
-                android:inputType="phone"
 
                 android:padding="10dp"
                 android:paddingStart="25dp" />
