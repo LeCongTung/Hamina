@@ -1,16 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Activity_Signin">
+    android:orientation="vertical"
+
+    android:paddingHorizontal="20dp"
+
+    tools:context=".activities.Activity_Signin"
+
+    android:background="@drawable/bg_signin">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+
+        android:src="@drawable/logo_hamina" />
+
+    <com.google.android.material.textfield.TextInputLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/etNumberPhoneLayout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        style="@style/textInputLayout.WhiteLabel"
+
+        android:padding="10dp">
+
+        <EditText
+            android:id="@+id/phonenumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="30dp"
+
+            android:background="@drawable/bg_stroke_primarycolor"
+
+            android:hint="Phonenumber"
+            android:inputType="phone"
+
+            android:drawableStart="@drawable/ic_phone_primary"
+            android:drawablePadding="10dp"
+
+            android:padding="10dp"
+            android:paddingStart="25dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <!--        Password-->
+    <com.google.android.material.textfield.TextInputLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/etPasswordLayout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/heading"
+        style="@style/textInputLayout.WhiteLabel"
+
+        android:padding="10dp">
+
+        <EditText
+            android:id="@+id/password"
+            style="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/bg_stroke_primarycolor"
+
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+
+            android:drawableStart="@drawable/ic_lock_primary"
+            android:drawablePadding="10dp"
+
+            android:padding="10dp"
+            android:paddingStart="25dp"
+
+            app:hintTextColor="@color/heading" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/btn_forgotpass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="20dp"
+
+            android:padding="15dp"
+
+            android:text="Forgot password?"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/btn_signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_forgotpass"
+
+            android:layout_marginStart="20dp"
+            android:padding="15dp"
+
+            android:text="Sign up"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
     <Button
-        android:id="@+id/signup"
+        android:id="@+id/btn_signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:text="Tao tai khoan"/>
+        android:layout_marginTop="100dp"
+        android:layout_marginHorizontal="20dp"
+        android:padding="15dp"
 
-</RelativeLayout>
+        android:background="@drawable/bg_corner_gray"
+        android:elevation="100dp"
+        android:text="Sign in"
+
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="17sp"/>
+
+</LinearLayout>

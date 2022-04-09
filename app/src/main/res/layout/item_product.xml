@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    app:cardCornerRadius="20dp"
+
+    android:layout_marginBottom="15dp"
+    android:layout_marginHorizontal="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+
+        android:background="#F3F3F5">
+
+        <ImageView
+            android:id="@+id/item_image"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+
+            android:src="@drawable/logo_hamina" />
+
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_image"
+
+            android:paddingVertical="10dp"
+
+            android:text="name"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:maxLines="1" />
+
+        <TextView
+            android:id="@+id/item_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_name"
+            android:layout_alignParentRight="true"
+
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+
+            android:text="price"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

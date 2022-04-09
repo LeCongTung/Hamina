@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".layouts.Layout_GettingStart"
+
+    android:paddingHorizontal="50dp"
+    android:paddingBottom="20dp"
+
+    android:background="@drawable/img_bgstart">
+
+    <TextView
+        android:id="@+id/forgettherules"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:paddingVertical="20dp"
+        android:layout_marginTop="130dp"
+
+        android:text="@string/slogan1"
+        android:textColor="@color/white"
+        android:textSize="33dp"
+        android:textStyle="bold"
+        android:textAllCaps="true"/>
+
+    <RelativeLayout
+        android:id="@+id/slo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/forgettherules">
+
+        <TextView
+            android:id="@+id/startmaking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+
+            android:text="@string/slogan2"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textAllCaps="true"/>
+
+        <TextView
+            android:id="@+id/rules"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/startmaking"
+
+            android:paddingStart="10dp"
+
+            android:text="@string/slogan3"
+            android:textColor="@color/black"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_signin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slo2"
+
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_corner_primary"
+        android:drawableEnd="@drawable/ic_arrowfoward_white"
+        android:drawablePadding="10dp"
+
+        android:paddingVertical="10dp"
+        android:paddingStart="60dp"
+        android:paddingEnd="45dp"
+
+        android:text="Sign in"
+        android:textAllCaps="true"
+        android:textColor="@color/white" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/recommend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="If you don't have any account?"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/btn_signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/recommend"
+
+            android:layout_marginStart="10dp"
+
+            android:text="Register!"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+    </RelativeLayout>
+</RelativeLayout>

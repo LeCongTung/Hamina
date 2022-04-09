@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgColor"
+
+    tools:context=".layouts.Layout_Home">
+
+    <RelativeLayout
+        android:id="@+id/top_nav"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:elevation="20dp"
+
+        android:paddingHorizontal="20dp">
+
+        <ImageView
+            android:id="@+id/btn_userprofile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginHorizontal="10dp"
+            android:paddingVertical="5dp"
+
+            android:background="@color/white"
+            android:src="@drawable/ic_align_left_black"
+            app:tint="@color/black" />
+
+        <ImageView
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/btn_cart"
+
+            android:layout_marginHorizontal="10dp"
+            android:paddingVertical="5dp"
+
+            android:background="@color/white"
+            android:src="@drawable/ic_search_black"
+            app:tint="@color/black" />
+
+        <ImageView
+            android:id="@+id/btn_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+
+            android:layout_marginHorizontal="10dp"
+            android:paddingVertical="5dp"
+
+            android:background="@color/white"
+            android:src="@drawable/ic_cart_black"
+            app:tint="@color/black" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_nav"
+        android:layout_below="@id/top_nav"
+
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+
+        android:clipToPadding="false"
+        android:scrollbars="none"
+
+        tools:listitem="@layout/item_product" />
+
+    <LinearLayout
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/bg_bottomnav"
+        android:orientation="horizontal"
+
+        android:paddingHorizontal="25dp">
+
+        <ImageButton
+            android:id="@+id/home"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+
+            android:layout_weight="1"
+            android:background="@color/white"
+
+            android:paddingVertical="5dp"
+            android:src="@drawable/ic_news_unclick" />
+
+        <Button
+            android:id="@+id/store"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:background="@color/white"
+
+            android:drawableTop="@drawable/ic_home_click"
+            android:drawableTint="@color/black"
+            android:paddingVertical="5dp"
+
+            android:text="Store"
+            android:textAllCaps="false"
+            android:textColor="@color/black" />
+
+        <ImageButton
+            android:id="@+id/notification"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+
+            android:layout_weight="1"
+            android:background="@color/white"
+
+            android:paddingVertical="5dp"
+            android:src="@drawable/ic_notifications_unclick" />
+    </LinearLayout>
+</RelativeLayout>

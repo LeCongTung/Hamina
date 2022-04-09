@@ -18,19 +18,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hamina">
         <activity
+            android:name=".layouts.Layout_Notification"
+            android:exported="false" />
+        <activity
+            android:name=".layouts.Layout_Store"
+            android:exported="false" />
+        <activity
+            android:name=".layouts.Layout_Home"
+            android:exported="true" />
+        <activity
             android:name=".activities.Activity_Signin"
-            android:exported="true" >
-
+            android:exported="true" />
+        <activity
+            android:name=".activities.Activity_Signup"
+            android:exported="true" />
+        <activity
+            android:name=".layouts.Layout_GettingStart"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".activities.Activity_Signup"
-            android:exported="true">
-
         </activity>
     </application>
 

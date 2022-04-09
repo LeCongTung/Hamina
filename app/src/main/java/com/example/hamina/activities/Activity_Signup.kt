@@ -2,6 +2,7 @@ package com.example.hamina.activities
 
 import android.Manifest
 import android.app.Dialog
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
@@ -54,6 +55,11 @@ class Activity_Signup : AppCompatActivity() {
 //      Permission firebase with
         database = FirebaseDatabase.getInstance().getReference("User")
 
+//        Creating personal id per account
+        val formatname = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss:SSSS", Locale.getDefault())
+        val now = Date()
+        var filename = formatname.format(now)
+
 ////        Spinner
 ////        ___________Colors
 //        val arrayColor = arrayOf("Red", "White", "Black", "Yellow", "Green", "Purple", "Blue", "Orange", "Pink", "Gray")
@@ -72,11 +78,6 @@ class Activity_Signup : AppCompatActivity() {
 //      Excuting the event
         binding.btnAdd.setOnClickListener {
 
-            val formatname = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss:SSSS", Locale.getDefault())
-            val now = Date()
-            var filename = formatname.format(now)
-
-
             showDialog()
             val phonenumber = binding.phonenumber.text.toString().trim()
             val password = binding.password.text.toString().trim()
@@ -87,17 +88,7 @@ class Activity_Signup : AppCompatActivity() {
             val money = 0
             val totalused = 0
 
-            val user = User(
-                filename,
-                phonenumber,
-                password,
-                fname,
-                lname,
-                gmail,
-                address,
-                money,
-                totalused
-            )
+            val user = User(filename, phonenumber, password, fname, lname, gmail, address, money, totalused)
 
             if (phonenumber.length != 10) {
 
@@ -178,7 +169,12 @@ class Activity_Signup : AppCompatActivity() {
                                                     )
                                                         .show()
                                                     uploadImgUser(filename)
-                                                    binding.profileImage.setImageURI(Uri.parse("android.resource://$packageName/${R.drawable.img_addphoto}"))
+                                                    startActivity(
+                                                        Intent(
+                                                            this,
+                                                            Activity_Signin::class.java
+                                                        )
+                                                    )
                                                 } else {
 
                                                     hideDialog()
@@ -226,6 +222,16 @@ class Activity_Signup : AppCompatActivity() {
 
             }
             getLocationUser()
+        }
+
+        binding.btnBack.setOnClickListener {
+
+            startActivity(
+                Intent(
+                    this,
+                    Activity_Signin::class.java
+                )
+            )
         }
     }
 
@@ -291,7 +297,7 @@ class Activity_Signup : AppCompatActivity() {
     //      Picking an image
     private val showImagePicker = registerForActivityResult(ActivityResultContracts.GetContent()) {
 
-        imageUri = it
+        imageUri= it
         binding.profileImage.setImageURI(imageUri)
     }
 
@@ -301,7 +307,7 @@ class Activity_Signup : AppCompatActivity() {
         storage = FirebaseStorage.getInstance().reference.child("User/$filename")
         storage.putFile(imageUri).addOnSuccessListener {
 
-            binding.profileImage.setImageURI(Uri.parse("android.resource://$packageName/${R.drawable.img_addphoto}"))
+            binding.profileImage.setImageURI(Uri.parse("android.resource://$packageName/${R.drawable.ic_camera_black}"))
             hideDialog()
         }.addOnFailureListener {
 
