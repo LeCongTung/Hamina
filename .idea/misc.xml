@@ -48,7 +48,8 @@
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_layout_getting_start.xml" value="0.36666666666666664" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_layout_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_layout_notification.xml" value="0.36666666666666664" />
-        <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_layout_store.xml" value="0.36666666666666664" />
+        <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_layout_show_type.xml" value="0.3875" />
+        <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_layout_store.xml" value="0.33" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_main.xml" value="0.3875" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_signin.xml" value="0.33" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_signup.xml" value="0.2462962962962963" />
@@ -56,7 +57,9 @@
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/fragment__list_product.xml" value="0.3875" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/fragment__notification.xml" value="0.3875" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/fragment__store.xml" value="0.36666666666666664" />
+        <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/item_choice.xml" value="0.3875" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/item_product.xml" value="0.3875" />
+        <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/item_type.xml" value="0.36666666666666664" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/loading.xml" value="0.3875" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/loading_addproduct.xml" value="0.2962962962962963" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3875" />

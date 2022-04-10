@@ -3,35 +3,41 @@ package com.example.hamina.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.example.hamina.R
-import com.example.hamina.databinding.ActivitySigninBinding
-import com.example.hamina.databinding.ActivitySignupBinding
 import com.example.hamina.layouts.Layout_Home
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class Activity_Signin : AppCompatActivity() {
 
-    private lateinit var binding: ActivitySigninBinding
     private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySigninBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_signin)
+
+//      Init
+        val btnSignup: TextView = findViewById(R.id.btn_signup)
+        val btnForgetpassword: TextView = findViewById(R.id.btn_forgotpass)
+        val etPhonenumber: EditText = findViewById(R.id.phonenumber)
+        val etPassword: EditText = findViewById(R.id.password)
+        val btnSignin: Button = findViewById(R.id.btn_signin)
 
         database = FirebaseDatabase.getInstance().getReference("User")
 
-        binding.btnSignup.setOnClickListener {
+        btnSignup.setOnClickListener {
 
             startActivity(Intent(this, Activity_Signup::class.java))
         }
 
-        binding.btnSignin.setOnClickListener {
+        btnSignin.setOnClickListener {
 
-            val phonenumber: String = binding.phonenumber.text.toString().trim()
-            val password: String = binding.password.text.toString().trim()
+            val phonenumber: String = etPhonenumber.text.toString().trim()
+            val password: String = etPassword.text.toString().trim()
 
             if (phonenumber.equals(""))
                 Toast.makeText(
@@ -49,8 +55,8 @@ class Activity_Signin : AppCompatActivity() {
 
                         if (checkphonenumber.equals(phonenumber) && checkpassword.equals(password)){
 
-                            binding.phonenumber.setText("")
-                            binding.password.setText("")
+                            etPhonenumber.setText("")
+                            etPassword.setText("")
 
                             val intent = Intent(this, Layout_Home::class.java).also {
                                 it.putExtra("info", phonenumber)
@@ -58,7 +64,7 @@ class Activity_Signin : AppCompatActivity() {
                             }
 
                         }else{
-                            binding.password.setText("")
+                            etPassword.setText("")
                             Toast.makeText(
                                 this,
                                 "Password is wrong!",

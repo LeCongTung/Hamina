@@ -11,13 +11,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.view.Window
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.hamina.R
-
-import com.example.hamina.databinding.ActivitySignupBinding
 import com.example.hamina.units.User
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -28,13 +26,13 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import de.hdodenhof.circleimageview.CircleImageView
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class Activity_Signup : AppCompatActivity() {
 
-    private lateinit var binding: ActivitySignupBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var storage: StorageReference
@@ -47,8 +45,20 @@ class Activity_Signup : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySignupBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_signup)
+
+//      Init
+        val btnBack: ImageButton = findViewById(R.id.btn_back)
+        val btnAddGallery: TextView = findViewById(R.id.addGalley)
+        val etPhonenumber: EditText = findViewById(R.id.phonenumber)
+        val etPassword: EditText = findViewById(R.id.password)
+        val etFirstname: EditText = findViewById(R.id.firstname)
+        val etLastname: EditText = findViewById(R.id.lastname)
+        val etGmail: EditText = findViewById(R.id.gmail)
+        val etLocation: TextView = findViewById(R.id.address)
+        val btnGetlocation: ImageView = findViewById(R.id.btn_getlocation)
+        val btnAdd: Button = findViewById(R.id.btn_add)
+
 
         auth = FirebaseAuth.getInstance()
 
@@ -76,15 +86,15 @@ class Activity_Signup : AppCompatActivity() {
 //        }
 
 //      Excuting the event
-        binding.btnAdd.setOnClickListener {
+        btnAdd.setOnClickListener {
 
             showDialog()
-            val phonenumber = binding.phonenumber.text.toString().trim()
-            val password = binding.password.text.toString().trim()
-            val fname = binding.firstname.text.toString().trim()
-            val lname = binding.lastname.text.toString().trim()
-            val gmail = binding.gmail.text.toString().trim()
-            val address = binding.address.text.toString().trim()
+            val phonenumber = etPhonenumber.text.toString().trim()
+            val password = etPassword.text.toString().trim()
+            val fname = etFirstname.text.toString().trim()
+            val lname = etLastname.text.toString().trim()
+            val gmail = etGmail.text.toString().trim()
+            val address = etLocation.text.toString().trim()
             val money = 0
             val totalused = 0
 
@@ -93,7 +103,7 @@ class Activity_Signup : AppCompatActivity() {
             if (phonenumber.length != 10) {
 
                 hideDialog()
-                binding.phonenumber.text.clear()
+                etPhonenumber.text.clear()
                 Toast.makeText(
                     this,
                     "(Phonenumber): Only 10 characters",
@@ -104,7 +114,7 @@ class Activity_Signup : AppCompatActivity() {
 
                     if (it.exists()) {
                         hideDialog()
-                        binding.phonenumber.text.clear()
+                        etPhonenumber.text.clear()
                         Toast.makeText(
                             this,
                             "(Phonenumber): Phonenumber has used already!",
@@ -114,7 +124,7 @@ class Activity_Signup : AppCompatActivity() {
                         if (password.length < 8 || password.length > 20) {
 
                             hideDialog()
-                            binding.password.text?.clear()
+                            etPassword.text?.clear()
                             Toast.makeText(
                                 this,
                                 "(Password): At least 8 characters and no more than 20 characters",
@@ -124,7 +134,7 @@ class Activity_Signup : AppCompatActivity() {
                             if (fname.length < 2) {
 
                                 hideDialog()
-                                binding.firstname.text.clear()
+                                etFirstname.text.clear()
                                 Toast.makeText(
                                     this,
                                     "(First name): At least 2 characters",
@@ -134,7 +144,7 @@ class Activity_Signup : AppCompatActivity() {
                                 if (lname.length < 2) {
 
                                     hideDialog()
-                                    binding.lastname.text.clear()
+                                    etLastname.text.clear()
                                     Toast.makeText(
                                         this,
                                         "(Last name): At least 2 characters",
@@ -156,12 +166,12 @@ class Activity_Signup : AppCompatActivity() {
                                                 if (it.isSuccessful) {
 
                                                     hideDialog()
-                                                    binding.firstname.text.clear()
-                                                    binding.lastname.text.clear()
-                                                    binding.gmail.text.clear()
-                                                    binding.phonenumber.text.clear()
-                                                    binding.address.setText("")
-                                                    binding.password.text?.clear()
+                                                    etFirstname.text.clear()
+                                                    etLastname.text.clear()
+                                                    etGmail.text.clear()
+                                                    etPhonenumber.text.clear()
+                                                    etLocation.setText("")
+                                                    etPassword.text?.clear()
                                                     Toast.makeText(
                                                         this@Activity_Signup,
                                                         "Successfully",
@@ -200,12 +210,12 @@ class Activity_Signup : AppCompatActivity() {
             hideDialog()
         }
 
-        binding.addGalley.setOnClickListener {
+        btnAddGallery.setOnClickListener {
 
             showImagePicker.launch("image/*")
         }
 
-        binding.btnGetlocation.setOnClickListener {
+        btnGetlocation.setOnClickListener {
 
             showDialog()
             if (ContextCompat.checkSelfPermission(
@@ -224,7 +234,7 @@ class Activity_Signup : AppCompatActivity() {
             getLocationUser()
         }
 
-        binding.btnBack.setOnClickListener {
+        btnBack.setOnClickListener {
 
             startActivity(
                 Intent(
@@ -276,6 +286,7 @@ class Activity_Signup : AppCompatActivity() {
             .requestLocationUpdates(locationRequest, object : LocationCallback() {
                 override fun onLocationResult(p0: LocationResult) {
                     super.onLocationResult(p0)
+                    val etLocation: TextView = findViewById(R.id.address)
                     LocationServices.getFusedLocationProviderClient(this@Activity_Signup)
                         .removeLocationUpdates(this)
                     if (!p0.equals(null) && p0.locations.size >= 0) {
@@ -285,7 +296,7 @@ class Activity_Signup : AppCompatActivity() {
 
                         addresses = geocoder.getFromLocation(latitude, longitude, 1)
                         var address: String = addresses[0].getAddressLine(0)
-                        binding.address.text = address
+                        etLocation.text = address
                     }
                 }
             }, Looper.getMainLooper()!!)
@@ -298,7 +309,8 @@ class Activity_Signup : AppCompatActivity() {
     private val showImagePicker = registerForActivityResult(ActivityResultContracts.GetContent()) {
 
         imageUri= it
-        binding.profileImage.setImageURI(imageUri)
+        val imgProfile: CircleImageView = findViewById(R.id.profile_image)
+        imgProfile.setImageURI(imageUri)
     }
 
 
@@ -307,7 +319,8 @@ class Activity_Signup : AppCompatActivity() {
         storage = FirebaseStorage.getInstance().reference.child("User/$filename")
         storage.putFile(imageUri).addOnSuccessListener {
 
-            binding.profileImage.setImageURI(Uri.parse("android.resource://$packageName/${R.drawable.ic_camera_black}"))
+            val imgProfile: CircleImageView = findViewById(R.id.profile_image)
+            imgProfile.setImageURI(Uri.parse("android.resource://$packageName/${R.drawable.ic_camera_black}"))
             hideDialog()
         }.addOnFailureListener {
 
