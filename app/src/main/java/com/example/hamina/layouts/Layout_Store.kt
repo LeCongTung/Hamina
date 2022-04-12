@@ -5,16 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
 import androidx.cardview.widget.CardView
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.hamina.R
-import com.example.hamina.adapters.Adapter_Product
-import com.example.hamina.databinding.ActivityLayoutHomeBinding
-import com.example.hamina.databinding.ActivityLayoutStoreBinding
 import com.example.hamina.shows.Layout_ShowType
-import com.example.hamina.units.ProductMen
 import com.google.firebase.database.*
 
 class Layout_Store : AppCompatActivity() {
@@ -33,7 +25,7 @@ class Layout_Store : AppCompatActivity() {
         val btnChoiceJewelry: CardView = findViewById(R.id.choiceJewelry)
 
 //        Get info user
-        val info = intent.getStringExtra("info")
+        val info = intent.getStringExtra("info").toString()
 
 //        Change another layout
         btnHome.setOnClickListener {

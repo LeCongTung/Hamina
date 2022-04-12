@@ -1,6 +1,6 @@
 package com.example.hamina.units
 
-data class ProductMen(
+data class Product(
     val name: String ?= null,
     val coloremain: String ?= null,
     val colorsecond: String ?= null,
@@ -11,6 +11,5 @@ data class ProductMen(
     val photobehind: String ?= null,
     val photodetail: String ?= null,
     val photomodel: String ?= null,
-    val price: Int ?= null,
-    val type: String? = null
+    val price: Int ?= null
 )

@@ -28,14 +28,14 @@
             android:id="@+id/item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
 
-            android:text="Name Type"
-            android:textColor="@color/white"
-            android:textStyle="bold|italic"
-            android:textSize="17sp"
+            android:layout_centerInParent="true"
             android:maxLines="1"
-            android:textAlignment="center"/>
+            android:text="Name Type"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold|italic" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -20,7 +20,7 @@ class Layout_Notification : AppCompatActivity() {
         val btnHome: ImageButton = findViewById(R.id.home)
 
 //        Get info user
-        val info = intent.getStringExtra("info")
+        val info = intent.getStringExtra("info").toString()
 
 //        Change another layout
         btnStore.setOnClickListener {

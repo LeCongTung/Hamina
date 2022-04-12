@@ -12,7 +12,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
 
         android:background="#F3F3F5">
 
@@ -20,6 +19,8 @@
             android:id="@+id/item_image"
             android:layout_width="match_parent"
             android:layout_height="150dp"
+
+            android:scaleType="centerCrop"
 
             android:src="@drawable/logo_hamina" />
 
@@ -30,12 +31,13 @@
             android:layout_below="@id/item_image"
 
             android:paddingVertical="10dp"
+            android:paddingStart="20dp"
 
+            android:maxLines="1"
             android:text="name"
             android:textColor="@color/black"
-            android:textStyle="bold"
             android:textSize="13sp"
-            android:maxLines="1" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/item_price"

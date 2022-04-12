@@ -27,7 +27,7 @@ class Layout_Home : AppCompatActivity() {
 
 
 //        Get info user
-        val info = intent.getStringExtra("info")
+        val info = intent.getStringExtra("info").toString()
 //        database = FirebaseDatabase.getInstance().getReference(info.toString())
 
 //        Change another layout
