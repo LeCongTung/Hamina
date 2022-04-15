@@ -21,7 +21,7 @@
 
     <com.google.android.material.textfield.TextInputLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/etNumberPhoneLayout"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         style="@style/textInputLayout.WhiteLabel"
@@ -51,7 +51,7 @@
     <!--        Password-->
     <com.google.android.material.textfield.TextInputLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/etPasswordLayout"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         app:passwordToggleEnabled="true"

@@ -34,6 +34,8 @@
             android:drawableTint="@color/black"
             android:paddingVertical="5dp"
 
+            android:elevation="0dp"
+
             android:text="News"
             android:textAllCaps="false"
             android:textColor="@color/black" />
@@ -43,7 +45,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-
 
             android:layout_marginHorizontal="10dp"
             android:paddingVertical="5dp"

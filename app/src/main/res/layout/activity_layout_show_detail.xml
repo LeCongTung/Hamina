@@ -1,9 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".shows.Layout_ShowDetail">
+    tools:context=".shows.Layout_ShowDetail"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    android:background="#F3F3F5">
+
+    <RelativeLayout
+        android:id="@+id/appBar"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+
+        android:background="@drawable/bg_corner_black"
+
+        android:padding="10dp"
+
+        android:layout_margin="20dp">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+            android:background="@drawable/ic_arrowback_white" />
+    </RelativeLayout>
+    
+    <ImageView
+        android:id="@+id/item_image"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+
+        android:src="@drawable/logo_hamina"
+
+        android:scaleType="centerCrop"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/item_image"
+
+        android:background="@drawable/bg_topradius_white">
+
+        <RelativeLayout
+            android:id="@+id/information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_image"
+
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:maxLines="1"
+
+                android:text="name"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/item_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_name"
+
+                android:maxLines="1"
+
+                android:paddingTop="10dp"
+
+                android:text="price"
+                android:textColor="#B11515"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/item_madein"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_price"
+
+                android:maxLines="1"
+
+                android:paddingTop="10dp"
+                android:layout_marginStart="20dp"
+
+                android:text="from"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/item_material"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_madein"
+
+                android:maxLines="1"
+
+                android:paddingTop="10dp"
+                android:layout_marginStart="20dp"
+
+                android:text="material"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/item_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_material"
+
+                android:layout_marginHorizontal="20dp"
+
+                android:paddingTop="10dp"
+
+                android:text="desciption"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

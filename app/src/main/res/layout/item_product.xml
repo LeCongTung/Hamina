@@ -30,10 +30,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/item_image"
 
-            android:paddingVertical="10dp"
-            android:paddingStart="20dp"
-
             android:maxLines="1"
+            android:paddingVertical="10dp"
+
+            android:paddingHorizontal="10dp"
             android:text="name"
             android:textColor="@color/black"
             android:textSize="13sp"
@@ -46,7 +46,7 @@
             android:layout_below="@id/item_name"
             android:layout_alignParentRight="true"
 
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
 
             android:text="price"

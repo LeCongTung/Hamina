@@ -34,8 +34,9 @@ class Layout_ShowProduct : AppCompatActivity() {
         val pertype = intent.getStringExtra("pertype").toString()
         val info = intent.getStringExtra("info").toString()
 
+
         val nameproduct = type + pertype
-        tvTitle.setText(nameproduct)
+        tvTitle.setText(pertype)
 
 
         btnBack.setOnClickListener {
@@ -61,7 +62,6 @@ class Layout_ShowProduct : AppCompatActivity() {
         val info = intent.getStringExtra("info").toString()
 
         val nameproduct = type + pertype
-
         database = FirebaseDatabase.getInstance().getReference(nameproduct)
 
         val listItem: RecyclerView = findViewById(R.id.list_item)
@@ -84,10 +84,11 @@ class Layout_ShowProduct : AppCompatActivity() {
 
                             val intent = Intent(this@Layout_ShowProduct, Layout_ShowDetail::class.java)
                             intent.putExtra("product", productArrayList[position].name)
-                            intent.putExtra("pertype",nameproduct)
                             intent.putExtra("info", info)
+                            intent.putExtra("type", type)
+                            intent.putExtra("pertype", pertype)
                             startActivity(intent)
-                            overridePendingTransition(R.anim.slide_blur, R.anim.slide_blur)
+                            overridePendingTransition(R.anim.slide_blur_right, R.anim.slide_appear_left)
                         }
                     })
                 }
