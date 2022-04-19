@@ -42,7 +42,7 @@ class Activity_Signin : AppCompatActivity() {
             if (phonenumber.equals(""))
                 Toast.makeText(
                     this,
-                    "Your account hasn't existed",
+                    "You need to fill out all",
                     Toast.LENGTH_SHORT
                 ).show()
             else{
@@ -76,7 +76,7 @@ class Activity_Signin : AppCompatActivity() {
                 }.addOnFailureListener {
                     Toast.makeText(
                         this,
-                        "Your account hasn't existed",
+                        "Fail to connect!",
                         Toast.LENGTH_SHORT
                     ).show()
                 }

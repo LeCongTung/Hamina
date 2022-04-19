@@ -13,8 +13,8 @@
 
     <RelativeLayout
         android:id="@+id/appBar"
-        android:layout_width="50dp"
-        android:layout_height="60dp"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
 
         android:background="@drawable/bg_corner_black"
 

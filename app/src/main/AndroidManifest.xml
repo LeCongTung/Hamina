@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hamina">
         <activity
+            android:name=".activities.Activity_BuyProduct"
+            android:exported="false" />
+        <activity
             android:name=".shows.Layout_ShowDetail"
             android:exported="false" />
         <activity
