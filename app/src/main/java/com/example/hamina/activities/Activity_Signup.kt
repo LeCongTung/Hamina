@@ -115,11 +115,7 @@ class Activity_Signup : AppCompatActivity() {
                     if (it.exists()) {
                         hideDialog()
                         etPhonenumber.text.clear()
-                        Toast.makeText(
-                            this,
-                            "(Phonenumber): Phonenumber has used already!",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(this, "(Phonenumber): Phonenumber has used already!", Toast.LENGTH_SHORT).show()
                     } else
                         if (password.length < 8 || password.length > 20) {
 

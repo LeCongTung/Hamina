@@ -7,12 +7,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hamina.R
-import com.example.hamina.units.Type
+import com.example.hamina.units.Cart
+import com.example.hamina.units.Product
 import com.squareup.picasso.Picasso
 
-class Adapter_Type(private val list: ArrayList<Type>): RecyclerView.Adapter<Adapter_Type.MyViewHolder>() {
+class Adapter_Cart(private val list: ArrayList<Cart>): RecyclerView.Adapter<Adapter_Cart.MyViewHolder>() {
 
-//    Choice a product in type
+    //    Choice a product in type
     private lateinit var mListener: onItemClickListener
 
     interface onItemClickListener {
@@ -27,7 +28,7 @@ class Adapter_Type(private val list: ArrayList<Type>): RecyclerView.Adapter<Adap
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_type, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_cart, parent, false)
         return MyViewHolder(itemView, mListener)
     }
 
@@ -35,8 +36,10 @@ class Adapter_Type(private val list: ArrayList<Type>): RecyclerView.Adapter<Adap
 
         val currentitem = list[position]
         holder.itemname.text = currentitem.name
-        Picasso.with(holder.itemimage.context).load(currentitem.photo).into(holder.itemimage)
-
+        holder.itemquantity.text = "Quantity: " + currentitem.quantity.toString()
+        holder.itemsize.text = "Size: " + currentitem.size.toString()
+        holder.itemtotal.text = "$" + currentitem.total.toString()
+        Picasso.with(holder.itemimage.context).load(currentitem.photomain).into(holder.itemimage)
     }
 
     override fun getItemCount(): Int {
@@ -46,6 +49,9 @@ class Adapter_Type(private val list: ArrayList<Type>): RecyclerView.Adapter<Adap
     class MyViewHolder(itemView: View, listener: onItemClickListener): RecyclerView.ViewHolder(itemView){
 
         val itemname: TextView = itemView.findViewById(R.id.item_name)
+        val itemquantity: TextView = itemView.findViewById(R.id.item_quantity)
+        val itemsize: TextView = itemView.findViewById(R.id.item_size)
+        val itemtotal: TextView = itemView.findViewById(R.id.item_total)
         val itemimage: ImageView = itemView.findViewById(R.id.item_image)
 
         init {
@@ -55,6 +61,5 @@ class Adapter_Type(private val list: ArrayList<Type>): RecyclerView.Adapter<Adap
                 listener.onItemClick(adapterPosition)
             }
         }
-
     }
 }

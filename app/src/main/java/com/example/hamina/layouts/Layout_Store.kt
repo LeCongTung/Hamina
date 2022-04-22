@@ -4,9 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import com.example.hamina.R
-import com.example.hamina.shows.Layout_ShowType
+import com.example.hamina.shows.Show_Detail
+import com.example.hamina.shows.Show_ListCart
+import com.example.hamina.shows.Show_ListType
 import com.google.firebase.database.*
 
 class Layout_Store : AppCompatActivity() {
@@ -24,10 +27,12 @@ class Layout_Store : AppCompatActivity() {
         val btnChoiceWomen: CardView = findViewById(R.id.choiceWomen)
         val btnChoiceJewelry: CardView = findViewById(R.id.choiceJewelry)
 
-//        Get info user
+        val btnCart: ImageView = findViewById(R.id.btn_cart)
+
+//      Get info user
         val info = intent.getStringExtra("info").toString()
 
-//        Change another layout
+//      Change another layout
         btnHome.setOnClickListener {
 
             val intent = Intent(this, Layout_Home::class.java)
@@ -44,11 +49,20 @@ class Layout_Store : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_blur, R.anim.slide_blur)
         }
 
+//        Excute event -- Change to another selection in appBar
+        btnCart.setOnClickListener{
+
+            val intent = Intent(this, Show_ListCart::class.java)
+            intent.putExtra("info", info)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_blur_right, R.anim.slide_appear_left)
+        }
+
 //        Choice type to buy clothes
         btnChoiceMen.setOnClickListener {
 
             val type = "ProductMen"
-            val intent = Intent(this, Layout_ShowType::class.java)
+            val intent = Intent(this, Show_ListType::class.java)
             intent.putExtra("info", info)
             intent.putExtra("type", type)
             startActivity(intent)
@@ -58,7 +72,7 @@ class Layout_Store : AppCompatActivity() {
         btnChoiceWomen.setOnClickListener {
 
             val type = "ProductWomen"
-            val intent = Intent(this, Layout_ShowType::class.java)
+            val intent = Intent(this, Show_ListType::class.java)
             intent.putExtra("info", info)
             intent.putExtra("type", type)
             startActivity(intent)
@@ -68,7 +82,7 @@ class Layout_Store : AppCompatActivity() {
         btnChoiceJewelry.setOnClickListener {
 
             val type = "Jewelry"
-            val intent = Intent(this, Layout_ShowType::class.java)
+            val intent = Intent(this, Show_ListType::class.java)
             intent.putExtra("info", info)
             intent.putExtra("type", type)
             startActivity(intent)

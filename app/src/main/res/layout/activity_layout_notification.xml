@@ -29,7 +29,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
 
-
             android:layout_marginHorizontal="10dp"
             android:paddingVertical="5dp"
 
@@ -55,6 +54,7 @@
             android:layout_weight="1"
 
             android:background="@color/white"
+            style="?android:attr/borderlessButtonStyle"
 
             android:drawableTop="@drawable/ic_notifications_click"
             android:drawableTint="@color/black"

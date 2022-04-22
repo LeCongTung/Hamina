@@ -29,6 +29,7 @@
             android:layout_weight="1"
 
             android:background="@color/white"
+            style="?android:attr/borderlessButtonStyle"
 
             android:drawableTop="@drawable/ic_news_click"
             android:drawableTint="@color/black"

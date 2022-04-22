@@ -8,21 +8,20 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hamina.R
-import com.example.hamina.activities.Activity_Signin
 import com.example.hamina.adapters.Adapter_Product
-import com.example.hamina.adapters.Adapter_Type
 import com.example.hamina.units.Product
-import com.example.hamina.units.Type
 import com.google.firebase.database.*
+import java.util.*
+import kotlin.collections.ArrayList
 
-class Layout_ShowProduct : AppCompatActivity() {
+class Show_ListProduct : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
     private lateinit var productArrayList: ArrayList<Product>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_layout_show_product)
+        setContentView(R.layout.activity_show_list_product)
 
 //      Init
         val btnBack: ImageButton = findViewById(R.id.btn_back)
@@ -41,11 +40,11 @@ class Layout_ShowProduct : AppCompatActivity() {
 
         btnBack.setOnClickListener {
 
-            val intent = Intent(this@Layout_ShowProduct, Layout_ShowType::class.java)
+            val intent = Intent(this@Show_ListProduct, Show_ListType::class.java)
             intent.putExtra("type", type)
             intent.putExtra("info", info)
             startActivity(intent)
-            overridePendingTransition(R.anim.slide_blur, R.anim.slide_blur)
+            overridePendingTransition(R.anim.slide_back, R.anim.slide_back2)
         }
 
         listItem.setHasFixedSize(true)
@@ -68,13 +67,19 @@ class Layout_ShowProduct : AppCompatActivity() {
         database.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
-
+                productArrayList.clear()
                 if (snapshot.exists()){
 
                     for (productSnapshot in snapshot.children){
 
                         val product = productSnapshot.getValue(Product::class.java)
                         productArrayList.add(product!!)
+
+                        productArrayList.sortByDescending {
+
+                            it.price
+                        }
+                        Collections.reverse(productArrayList)
                     }
 
                     listItem.adapter = tradeadapter
@@ -82,7 +87,7 @@ class Layout_ShowProduct : AppCompatActivity() {
 
                         override fun onItemClick(position: Int) {
 
-                            val intent = Intent(this@Layout_ShowProduct, Layout_ShowDetail::class.java)
+                            val intent = Intent(this@Show_ListProduct, Show_Detail::class.java)
                             intent.putExtra("product", productArrayList[position].name)
                             intent.putExtra("info", info)
                             intent.putExtra("type", type)

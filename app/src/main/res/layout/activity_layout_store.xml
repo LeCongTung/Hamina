@@ -25,9 +25,9 @@
             android:layout_height="wrap_content"
 
             android:layout_marginHorizontal="10dp"
-            android:paddingVertical="5dp"
+            android:background="@drawable/status_btnwhite"
 
-            android:background="@color/white"
+            android:paddingVertical="5dp"
             android:src="@drawable/ic_align_left_black"
             app:tint="@color/black" />
 
@@ -35,12 +35,12 @@
             android:id="@+id/btn_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/btn_cart"
-
             android:layout_marginHorizontal="10dp"
-            android:paddingVertical="5dp"
 
-            android:background="@color/white"
+            android:layout_toLeftOf="@id/btn_cart"
+            android:background="@drawable/status_btnwhite"
+
+            android:paddingVertical="5dp"
             android:src="@drawable/ic_search_black"
             app:tint="@color/black" />
 
@@ -51,9 +51,9 @@
             android:layout_alignParentRight="true"
 
             android:layout_marginHorizontal="10dp"
-            android:paddingVertical="5dp"
+            android:background="@drawable/status_btnwhite"
 
-            android:background="@color/white"
+            android:paddingVertical="5dp"
             android:src="@drawable/ic_cart_black"
             app:tint="@color/black" />
     </RelativeLayout>
@@ -193,6 +193,9 @@
             android:layout_weight="1"
 
             android:background="@color/white"
+            style="?android:attr/borderlessButtonStyle"
+
+            android:elevation="0dp"
 
             android:drawableTop="@drawable/ic_home_click"
             android:drawableTint="@color/black"

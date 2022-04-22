@@ -64,7 +64,8 @@
         android:layout_below="@id/slo2"
 
         android:layout_marginTop="20dp"
-        android:background="@drawable/bg_corner_primary"
+        android:background="@drawable/status_btnback"
+
         android:drawableEnd="@drawable/ic_arrowfoward_white"
         android:drawablePadding="10dp"
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".shows.Layout_ShowType">
+    tools:context=".shows.Show_ListType">
 
     <RelativeLayout
         android:id="@+id/top_nav"
@@ -104,6 +104,7 @@
             android:layout_weight="1"
 
             android:background="@color/white"
+            style="?android:attr/borderlessButtonStyle"
 
             android:drawableTop="@drawable/ic_home_click"
             android:drawableTint="@color/black"

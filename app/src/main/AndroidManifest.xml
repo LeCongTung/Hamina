@@ -18,16 +18,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hamina">
         <activity
+            android:name=".shows.Show_ListCart"
+            android:exported="false" />
+        <activity
             android:name=".activities.Activity_BuyProduct"
             android:exported="false" />
         <activity
-            android:name=".shows.Layout_ShowDetail"
+            android:name=".shows.Show_Detail"
             android:exported="false" />
         <activity
-            android:name=".shows.Layout_ShowProduct"
+            android:name=".shows.Show_ListProduct"
             android:exported="false" />
         <activity
-            android:name=".shows.Layout_ShowType"
+            android:name=".shows.Show_ListType"
             android:exported="false" />
         <activity
             android:name=".layouts.Layout_Notification"

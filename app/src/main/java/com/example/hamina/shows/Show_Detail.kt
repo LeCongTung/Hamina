@@ -4,24 +4,19 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import com.example.hamina.R
 import com.example.hamina.activities.Activity_BuyProduct
-import com.example.hamina.layouts.Layout_Home
-import com.example.hamina.units.Product
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
 
-class Layout_ShowDetail : AppCompatActivity() {
+class Show_Detail : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_layout_show_detail)
+        setContentView(R.layout.activity_show_detail)
 
 //      Init
         val tvproductname: TextView = findViewById(R.id.item_name)
@@ -65,7 +60,6 @@ class Layout_ShowDetail : AppCompatActivity() {
                 Picasso.with(imageDetail.context).load(photodetail).into(imageDetail)
                 Picasso.with(imageModel.context).load(photomodel).into(imageModel)
 
-
             }else
                 Toast.makeText(this, "This item hasn't existed", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener {
@@ -78,12 +72,12 @@ class Layout_ShowDetail : AppCompatActivity() {
 
         btnBack.setOnClickListener {
 
-            val intent = Intent(this, Layout_ShowProduct::class.java)
+            val intent = Intent(this, Show_ListProduct::class.java)
             intent.putExtra("type", type)
             intent.putExtra("pertype", pertype)
             intent.putExtra("info", info)
             startActivity(intent)
-            overridePendingTransition(R.anim.slide_blur, R.anim.slide_blur)
+            overridePendingTransition(R.anim.slide_back, R.anim.slide_back2)
         }
 
         btnDetail.setOnClickListener {
@@ -94,7 +88,7 @@ class Layout_ShowDetail : AppCompatActivity() {
             intent.putExtra("product", product)
             intent.putExtra("info", info)
             startActivity(intent)
-            overridePendingTransition(R.anim.slide_blur, R.anim.slide_blur)
+            overridePendingTransition(R.anim.slide_blur_right, R.anim.slide_appear_left)
         }
     }
 }

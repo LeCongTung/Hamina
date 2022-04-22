@@ -6,6 +6,8 @@
         <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable-v24/bg_corner_primary.xml" value="0.183" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable-v24/bg_rightbottom_gray.xml" value="0.221" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.156" />
+        <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable-v24/status_btnback.xml" value="0.2215" />
+        <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable-v24/status_btnwhite.xml" value="0.2215" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable/bg_bottom_primary.xml" value="0.166" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable/bg_bottomnav.xml" value="0.221" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable/bg_choicetype.xml" value="0.221" />
@@ -17,6 +19,8 @@
         <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable/bg_round_primarycolor.xml" value="0.17" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable/bg_stroke_primarycolor.xml" value="0.17" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable/bg_topradius_white.xml" value="0.221" />
+        <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable/click_btnback.xml" value="0.2215" />
+        <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable/click_btnsize.xml" value="0.2215" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable/homefragment.xml" value="0.156" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable/ic_addfromcamera_white.xml" value="0.195" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable/ic_addfromgallery_white.xml" value="0.195" />
@@ -45,16 +49,23 @@
         <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable/nav_home.xml" value="0.156" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable/nav_news.xml" value="0.156" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable/nav_notification.xml" value="0.156" />
+        <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable/status_btnback.xml" value="0.2215" />
+        <entry key="..\:/Flutter/Hamina/app/src/main/res/drawable/unclick_btnsize.xml" value="0.2215" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_addproduct.xml" value="0.33" />
-        <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_buy_product.xml" value="0.3875" />
+        <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_buy_product.xml" value="0.3675925925925926" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_layout_getting_start.xml" value="0.36666666666666664" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_layout_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_layout_notification.xml" value="0.36666666666666664" />
-        <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_layout_show_detail.xml" value="0.18" />
+        <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_layout_show_detail.xml" value="0.3675925925925926" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_layout_show_product.xml" value="0.36666666666666664" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_layout_show_type.xml" value="0.3875" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_layout_store.xml" value="0.33" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_main.xml" value="0.3875" />
+        <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_show_detail.xml" value="0.3875" />
+        <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_show_list_cart.xml" value="0.3875" />
+        <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_show_list_product.xml" value="0.3875" />
+        <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_show_list_type.xml" value="0.3875" />
+        <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_show_listtype.xml" value="0.3875" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_signin.xml" value="0.33" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/activity_signup.xml" value="0.36666666666666664" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/dialog_uploading.xml" value="0.36666666666666664" />
@@ -62,6 +73,7 @@
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/fragment__list_product.xml" value="0.3875" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/fragment__notification.xml" value="0.3875" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/fragment__store.xml" value="0.36666666666666664" />
+        <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/item_cart.xml" value="0.3875" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/item_choice.xml" value="0.3875" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/item_imgproduct.xml" value="0.36666666666666664" />
         <entry key="..\:/Flutter/Hamina/app/src/main/res/layout/item_product.xml" value="0.3875" />

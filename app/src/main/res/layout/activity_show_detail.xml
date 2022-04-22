@@ -6,27 +6,24 @@
     android:layout_height="match_parent"
     android:background="#F3F3F5"
 
-    tools:context=".shows.Layout_ShowDetail">
+    tools:context=".shows.Show_Detail">
 
     <RelativeLayout
         android:id="@+id/appBar"
-        android:layout_width="40dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
 
         android:layout_margin="20dp"
-
-        android:background="@drawable/bg_corner_black"
-        android:padding="10dp"
 
         android:translationZ="90dp">
 
         <ImageButton
             android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
 
-            android:layout_centerInParent="true"
-            android:background="@drawable/ic_arrowback_white" />
+            android:src="@drawable/ic_arrowback_white"
+            android:background="@drawable/status_btnback" />
     </RelativeLayout>
 
     <HorizontalScrollView
@@ -47,12 +44,16 @@
                 android:layout_width="410dp"
                 android:layout_height="match_parent"
 
+                android:scaleType="centerCrop"
+
                 android:src="@drawable/logo_hamina" />
 
             <ImageView
                 android:id="@+id/imageBehind"
                 android:layout_width="410dp"
                 android:layout_height="match_parent"
+
+                android:scaleType="centerCrop"
 
                 android:src="@drawable/logo_hamina" />
 
@@ -61,12 +62,16 @@
                 android:layout_width="410dp"
                 android:layout_height="match_parent"
 
+                android:scaleType="centerCrop"
+
                 android:src="@drawable/logo_hamina" />
 
             <ImageView
                 android:id="@+id/imageModel"
                 android:layout_width="410dp"
                 android:layout_height="match_parent"
+
+                android:scaleType="centerCrop"
 
                 android:src="@drawable/logo_hamina" />
         </LinearLayout>
@@ -138,10 +143,12 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
 
-            android:background="@drawable/bg_corner_black"
-            android:text="Show more details"
-            android:textAllCaps="false"
+            android:layout_marginBottom="20dp"
 
+            android:background="@drawable/status_btnback"
+            android:text="Show more details"
+
+            android:textAllCaps="false"
             android:textColor="@color/white" />
     </RelativeLayout>
 </RelativeLayout>

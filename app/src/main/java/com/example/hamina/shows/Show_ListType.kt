@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hamina.R
@@ -13,19 +14,21 @@ import com.example.hamina.layouts.Layout_Notification
 import com.example.hamina.units.Type
 import com.google.firebase.database.*
 
-class Layout_ShowType : AppCompatActivity() {
+class Show_ListType : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
     private lateinit var typeArrayList: ArrayList<Type>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_layout_show_type)
+        setContentView(R.layout.activity_show_list_type)
 
 //      Init
         val btnHome: ImageButton = findViewById(R.id.home)
         val btnNotification: ImageButton = findViewById(R.id.notification)
         val listItem: RecyclerView = findViewById(R.id.list_item)
+
+        val btnCart: ImageView = findViewById(R.id.btn_cart)
 
 //        Get info user
         val type = intent.getStringExtra("type").toString()
@@ -41,7 +44,6 @@ class Layout_ShowType : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_blur, R.anim.slide_blur)
         }
 
-
         btnNotification.setOnClickListener {
 
             val intent = Intent(this, Layout_Notification::class.java)
@@ -50,6 +52,14 @@ class Layout_ShowType : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_blur, R.anim.slide_blur)
         }
 
+//        Excute event -- Change to another selection in appBar
+        btnCart.setOnClickListener{
+
+            val intent = Intent(this, Show_ListCart::class.java)
+            intent.putExtra("info", info)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_blur_right, R.anim.slide_appear_left)
+        }
 
         listItem.setHasFixedSize(true)
         listItem.layoutManager = GridLayoutManager(this, 2)
@@ -67,9 +77,9 @@ class Layout_ShowType : AppCompatActivity() {
 
         val listItem: RecyclerView = findViewById(R.id.list_item)
         database.addValueEventListener(object : ValueEventListener {
-
             override fun onDataChange(snapshot: DataSnapshot) {
 
+                typeArrayList.clear()
                 if (snapshot.exists()){
 
                     for (productSnapshot in snapshot.children){
@@ -83,7 +93,7 @@ class Layout_ShowType : AppCompatActivity() {
 
                         override fun onItemClick(position: Int) {
 
-                            val intent = Intent(this@Layout_ShowType, Layout_ShowProduct::class.java)
+                            val intent = Intent(this@Show_ListType, Show_ListProduct::class.java)
                             intent.putExtra("type", type)
                             intent.putExtra("info", info)
                             intent.putExtra("pertype", typeArrayList[position].name)
