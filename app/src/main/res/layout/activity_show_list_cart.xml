@@ -26,6 +26,34 @@
 
             android:src="@drawable/ic_arrowback_white"
             android:background="@drawable/status_btnback" />
+
+        <ImageView
+            android:id="@+id/btn_sortletter"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="10dp"
+
+            android:layout_toLeftOf="@id/btn_sortprice"
+            android:background="@drawable/status_btnwhite"
+
+            android:paddingVertical="5dp"
+            android:src="@drawable/ic_atoz_black"
+            app:tint="@color/black" />
+
+        <ImageView
+            android:id="@+id/btn_sortprice"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/status_btnwhite"
+
+            android:paddingVertical="5dp"
+            android:src="@drawable/ic_price_increase_black"
+            app:tint="@color/black" />
     </RelativeLayout>
 
     <TextView

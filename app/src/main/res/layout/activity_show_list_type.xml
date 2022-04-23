@@ -19,39 +19,39 @@
 
         <ImageView
             android:id="@+id/btn_userprofile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
 
             android:layout_marginHorizontal="10dp"
-            android:paddingVertical="5dp"
-
             android:background="@color/white"
+
+            android:paddingVertical="5dp"
             android:src="@drawable/ic_align_left_black"
             app:tint="@color/black" />
 
         <ImageView
             android:id="@+id/btn_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/btn_cart"
-
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginHorizontal="10dp"
-            android:paddingVertical="5dp"
 
+            android:layout_toLeftOf="@id/btn_cart"
             android:background="@color/white"
+
+            android:paddingVertical="5dp"
             android:src="@drawable/ic_search_black"
             app:tint="@color/black" />
 
         <ImageView
             android:id="@+id/btn_cart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_alignParentRight="true"
 
             android:layout_marginHorizontal="10dp"
-            android:paddingVertical="5dp"
-
             android:background="@color/white"
+
+            android:paddingVertical="5dp"
             android:src="@drawable/ic_cart_black"
             app:tint="@color/black" />
     </RelativeLayout>
