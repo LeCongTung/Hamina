@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Activity_BuyProduct"
+    tools:context=".activities.Activity_Abate"
 
-    android:background="@color/bgColor">
+    android:background="#F3F3F5">
 
     <RelativeLayout
         android:id="@+id/appBar"
@@ -26,37 +26,60 @@
 
             android:background="@drawable/status_btnback"
             android:src="@drawable/ic_arrowback_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/product_price"
+
+            android:paddingEnd="3dp"
+
+            android:text="$"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+
+            android:text="$xxxx"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/appBar"
 
         android:orientation="vertical"
-        android:paddingHorizontal="20dp"
+        android:paddingHorizontal="20dp">
 
-        android:paddingBottom="10dp">
+        <ImageView
+            android:id="@+id/imageMain"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
 
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="30dp"
-
-            android:text="Product's details"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            android:src="@drawable/logo_hamina" />
 
         <TextView
             android:id="@+id/product_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/title"
+            android:layout_below="@id/imageMain"
+            android:layout_centerHorizontal="true"
 
             android:paddingVertical="20dp"
 
@@ -66,76 +89,11 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/product_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/product_name"
-
-            android:layout_marginBottom="20dp"
-
-            android:text="Description"
-            android:textColor="@color/black" />
-
-        <RelativeLayout
-            android:id="@+id/setColor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/product_description"
-
-            android:layout_marginBottom="20dp">
-
-            <TextView
-                android:id="@+id/title_color"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-
-                android:text="Color:"
-                android:textColor="@color/black" />
-
-            <ImageView
-                android:id="@+id/product_colormain"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_toStartOf="@id/product_colorsecond" />
-
-            <ImageView
-                android:id="@+id/product_colorsecond"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_alignParentRight="true"
-
-                android:layout_marginStart="10dp" />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/product_material"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/setColor"
-
-            android:layout_marginBottom="20dp"
-
-            android:text="Material:"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/product_madein"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/product_material"
-
-            android:layout_marginBottom="20dp"
-
-            android:text="Made in:"
-            android:textColor="@color/black" />
-
         <RelativeLayout
             android:id="@+id/setSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/product_madein"
+            android:layout_below="@id/product_name"
 
             android:layout_marginBottom="20dp">
 
@@ -211,9 +169,7 @@
             android:id="@+id/setQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/setSize"
-
-            android:layout_marginBottom="20dp">
+            android:layout_below="@id/setSize">
 
             <TextView
                 android:id="@+id/title_quantity"
@@ -274,61 +230,59 @@
             android:layout_marginBottom="20dp"
 
             android:text="Description"
-            android:textColor="@color/bgColor" />
+            android:textColor="#F3F3F5" />
+
+        <TextView
+            android:id="@+id/valuePrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/setQuantity"
+
+            android:layout_marginBottom="20dp"
+
+            android:text="Description"
+            android:textColor="#F3F3F5" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/contentBuy"
+    <RelativeLayout
+        android:id="@+id/contentBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
 
-        android:background="@color/white"
+        android:paddingHorizontal="60dp"
+        android:paddingVertical="20dp">
 
-        android:elevation="10dp">
+        <ImageButton
+            android:id="@+id/btn_delete"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
 
-        <RelativeLayout
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:background="@drawable/status_btn_border_gray"
+            android:src="@drawable/ic_delete_black"
+            app:tint="@color/black" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/product_price"
+        <ImageButton
+            android:id="@+id/btn_addFavourite"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
 
-                android:paddingEnd="3dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/status_btn_border_gray"
+            android:src="@drawable/ic_favorite_black"
+            app:tint="@color/black"/>
 
-                android:text="$"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
+        <ImageButton
+            android:id="@+id/btn_edit"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
 
-            <TextView
-                android:id="@+id/product_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+            android:layout_centerInParent="true"
+            android:background="@drawable/status_btn_border_gray"
+            android:src="@drawable/ic_edit_black"
+            app:tint="@color/black"/>
 
-                android:text="$xxxx"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
+    </RelativeLayout>
 
-        <Button
-            android:id="@+id/btn_addCart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-
-            android:background="@color/black"
-
-            android:text="Add to cart"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            android:textStyle="bold" />
-    </LinearLayout>
 </RelativeLayout>

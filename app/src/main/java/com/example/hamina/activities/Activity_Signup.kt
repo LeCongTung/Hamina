@@ -113,13 +113,12 @@ class Activity_Signup : AppCompatActivity() {
                 database.child(phonenumber).get().addOnSuccessListener {
 
                     if (it.exists()) {
-                        hideDialog()
+
                         etPhonenumber.text.clear()
                         Toast.makeText(this, "(Phonenumber): Phonenumber has used already!", Toast.LENGTH_SHORT).show()
                     } else
                         if (password.length < 8 || password.length > 20) {
 
-                            hideDialog()
                             etPassword.text?.clear()
                             Toast.makeText(
                                 this,
@@ -129,7 +128,6 @@ class Activity_Signup : AppCompatActivity() {
                         } else
                             if (fname.length < 2) {
 
-                                hideDialog()
                                 etFirstname.text.clear()
                                 Toast.makeText(
                                     this,
@@ -139,7 +137,6 @@ class Activity_Signup : AppCompatActivity() {
                             } else
                                 if (lname.length < 2) {
 
-                                    hideDialog()
                                     etLastname.text.clear()
                                     Toast.makeText(
                                         this,
@@ -149,7 +146,6 @@ class Activity_Signup : AppCompatActivity() {
                                 } else
                                     if (address.isEmpty()) {
 
-                                        hideDialog()
                                         Toast.makeText(
                                             this,
                                             "(Address): Allow to get current location",
@@ -161,7 +157,6 @@ class Activity_Signup : AppCompatActivity() {
                                             .addOnCompleteListener {
                                                 if (it.isSuccessful) {
 
-                                                    hideDialog()
                                                     etFirstname.text.clear()
                                                     etLastname.text.clear()
                                                     etGmail.text.clear()
@@ -192,7 +187,7 @@ class Activity_Signup : AppCompatActivity() {
                                                 }
                                             }
                                     }
-
+                    hideDialog()
                 }.addOnFailureListener {
 
                     hideDialog()

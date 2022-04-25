@@ -38,7 +38,7 @@
             android:background="@drawable/status_btnwhite"
 
             android:paddingVertical="5dp"
-            android:src="@drawable/ic_atoz_black"
+            android:src="@drawable/ic_sortletter_black"
             app:tint="@color/black" />
 
         <ImageView

@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hamina">
         <activity
+            android:name=".activities.Activity_Abate"
+            android:exported="false" />
+        <activity
             android:name=".shows.Show_ListCart"
             android:exported="false" />
         <activity

@@ -10,6 +10,7 @@ import com.example.hamina.R
 import com.example.hamina.shows.Show_Detail
 import com.example.hamina.shows.Show_ListProduct
 import com.example.hamina.units.Cart
+import com.example.hamina.units.TotalPrice
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -18,6 +19,7 @@ class Activity_BuyProduct : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
     private lateinit var databaseCart: DatabaseReference
+    private lateinit var databaseTotal: DatabaseReference
     private lateinit var dialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,12 +57,12 @@ class Activity_BuyProduct : AppCompatActivity() {
         val nameproduct = type + pertype
         database = FirebaseDatabase.getInstance().getReference(nameproduct)
 
-        databaseCart = FirebaseDatabase.getInstance().getReference("Cart/$info")
+        databaseCart = FirebaseDatabase.getInstance().getReference("Cart/$info/List")
+        databaseTotal = FirebaseDatabase.getInstance().getReference("Cart/$info")
 
+        database.child(product).get().addOnSuccessListener {
 
-        database.child(product).get().addOnSuccessListener{
-
-            if (it.exists()){
+            if (it.exists()) {
 
                 val name = it.child("name").value.toString().trim()
                 val description = it.child("description").value.toString().trim()
@@ -83,35 +85,34 @@ class Activity_BuyProduct : AppCompatActivity() {
 
 //              Set quantities and final price product
                 var valueQuantity = tvquantity.text.toString().toInt()
-                var valuePerProduct = price.toInt()
-                var valuePriceNoChange = valuePerProduct
+                var valueAllProduct = price.toInt()
+                val valuePriceNoChange = valueAllProduct
 
 //                Excute event -- Plus or minus a quantity of product
                 btnMinus.setOnClickListener {
 
                     if (valueQuantity > 1) {
                         valueQuantity -= 1
-                        valuePerProduct -= valuePriceNoChange
-                    }
-                    else{
-                        valuePerProduct = valuePriceNoChange
+                        valueAllProduct -= valuePriceNoChange
+                    } else {
+                        valueAllProduct = valuePriceNoChange
                         Toast.makeText(this, "At least 1 product", Toast.LENGTH_SHORT).show()
                     }
 
                     tvquantity.setText(valueQuantity.toString())
-                    tvproductprice.setText(valuePerProduct.toString())
+                    tvproductprice.setText(valueAllProduct.toString())
                 }
 
                 btnPlus.setOnClickListener {
 
                     valueQuantity += 1
-                    valuePerProduct += valuePriceNoChange
+                    valueAllProduct += valuePriceNoChange
 
                     tvquantity.setText(valueQuantity.toString())
-                    tvproductprice.setText(valuePerProduct.toString())
+                    tvproductprice.setText(valueAllProduct.toString())
                 }
 
-            }else
+            } else
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener {
             Toast.makeText(
@@ -171,11 +172,14 @@ class Activity_BuyProduct : AppCompatActivity() {
 //      Excute event -- Add to cart
         btnAddToCart.setOnClickListener {
 
-            if (valueSize.equals("")){
+            if (valueSize.equals("")) {
 
-                Toast.makeText(this, "You need to choose a size before add to the cart", Toast.LENGTH_SHORT).show()
-            }
-            else{
+                Toast.makeText(
+                    this,
+                    "You need to choose a size before add to the cart",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
                 val name = tvproductname.text.toString().trim()
                 val quantity = tvquantity.text.toString().toInt()
                 val total = tvproductprice.text.toString().toInt()
@@ -185,26 +189,64 @@ class Activity_BuyProduct : AppCompatActivity() {
                 val saveName = name + "_" + valueSize
 
                 showDialog()
-                database.child(saveName).get().addOnSuccessListener{
+                databaseCart.child(saveName).get().addOnSuccessListener {
 
-                    if (it.exists())
-                        Toast.makeText(this, "This product has already existed in cart", Toast.LENGTH_SHORT).show()
-                    else{
+                    if (it.exists()) {
+
+                        Toast.makeText(
+                            this,
+                            "This product has already existed in cart",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
                         databaseCart.child(saveName).setValue(cart).addOnCompleteListener {
                             if (it.isSuccessful) {
 
-                                hideDialog()
-                                Toast.makeText(this, "Add to cart successfully", Toast.LENGTH_SHORT).show()
-                                val intent = Intent(this, Show_ListProduct::class.java)
-                                intent.putExtra("type", type)
-                                intent.putExtra("pertype", pertype)
-                                intent.putExtra("info", info)
-                                startActivity(intent)
-                                overridePendingTransition(R.anim.slide_back, R.anim.slide_back2)
+                                databaseTotal.child("total").get().addOnSuccessListener {
+
+                                    if (it.exists()) {
+
+                                        var availableValue = it.child("total").value.toString().toInt()
+                                        availableValue += total
+                                        val totalprice = TotalPrice(availableValue)
+
+                                        databaseTotal.child("total").setValue(totalprice).addOnCompleteListener {
+                                                if (it.isSuccessful) {
+
+                                                } else {
+
+                                                    Toast.makeText(
+                                                        this,
+                                                        "Failed to add to cart",
+                                                        Toast.LENGTH_SHORT
+                                                    ).show()
+                                                }
+                                            }.addOnFailureListener {
+                                                Toast.makeText(this, "Fail to connect!", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }else{
+
+                                        val totalprice = TotalPrice(total)
+                                        databaseTotal.child("total").setValue(totalprice).addOnCompleteListener {
+                                            if (it.isSuccessful) {
+
+                                            } else {
+
+                                                Toast.makeText(
+                                                    this,
+                                                    "Failed to add to cart",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            }
+                                        }.addOnFailureListener {
+                                            Toast.makeText(this, "Fail to connect!", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+                                }
                             } else {
 
-                                hideDialog()
-                                Toast.makeText(this, "Failed to add to cart", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "Failed to add to cart", Toast.LENGTH_SHORT)
+                                    .show()
                             }
                         }.addOnFailureListener {
                             Toast.makeText(
@@ -214,6 +256,20 @@ class Activity_BuyProduct : AppCompatActivity() {
                             ).show()
                         }
                     }
+                    hideDialog()
+                    Toast.makeText(this, "Add to cart successfully", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, Show_ListProduct::class.java)
+                    intent.putExtra("type", type)
+                    intent.putExtra("pertype", pertype)
+                    intent.putExtra("info", info)
+                    startActivity(intent)
+                    overridePendingTransition(R.anim.slide_back, R.anim.slide_back2)
+                }.addOnFailureListener {
+                    Toast.makeText(
+                        this,
+                        "Fail to connect!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
@@ -224,7 +280,7 @@ class Activity_BuyProduct : AppCompatActivity() {
         val vcolormain: ImageView = findViewById(R.id.product_colormain)
         val vcolorsecond: ImageView = findViewById(R.id.product_colorsecond)
 
-        when (colormain){
+        when (colormain) {
 
             "black" -> vcolormain.setBackgroundColor(getColor(R.color.black))
             "white" -> vcolormain.setBackgroundColor(getColor(R.color.white))
@@ -240,7 +296,7 @@ class Activity_BuyProduct : AppCompatActivity() {
             "brown" -> vcolormain.setBackgroundColor(getColor(R.color.brown))
         }
 
-        when (colorsecond){
+        when (colorsecond) {
 
             "black" -> vcolorsecond.setBackgroundColor(getColor(R.color.black))
             "white" -> vcolorsecond.setBackgroundColor(getColor(R.color.white))

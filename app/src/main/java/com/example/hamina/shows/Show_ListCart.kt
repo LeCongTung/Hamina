@@ -10,11 +10,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hamina.R
+import com.example.hamina.activities.Activity_Abate
 import com.example.hamina.adapters.Adapter_Cart
 import com.example.hamina.adapters.Adapter_Product
 import com.example.hamina.layouts.Layout_Store
 import com.example.hamina.units.Cart
 import com.example.hamina.units.Product
+import com.example.hamina.units.TotalPrice
 import com.google.firebase.database.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -22,6 +24,7 @@ import kotlin.collections.ArrayList
 class Show_ListCart : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
+    private lateinit var databaseTotal: DatabaseReference
     private lateinit var cartArrayList: ArrayList<Cart>
 
 
@@ -32,6 +35,7 @@ class Show_ListCart : AppCompatActivity() {
 //      Init
         val btnBack: ImageButton = findViewById(R.id.btn_back)
         val listItem: RecyclerView = findViewById(R.id.list_item)
+
 
 //      Get info user
         val info = intent.getStringExtra("info").toString()
@@ -47,6 +51,7 @@ class Show_ListCart : AppCompatActivity() {
         listItem.setHasFixedSize(true)
         listItem.layoutManager = LinearLayoutManager(this)
         cartArrayList = arrayListOf<Cart>()
+        loadTotal()
         getData()
 
         //            Sort a optional price
@@ -97,7 +102,7 @@ class Show_ListCart : AppCompatActivity() {
         var tradeadapter = Adapter_Cart(cartArrayList)
         val info = intent.getStringExtra("info").toString()
 
-        database = FirebaseDatabase.getInstance().getReference("Cart/$info")
+        database = FirebaseDatabase.getInstance().getReference("Cart/$info/List")
 
         val listItem: RecyclerView = findViewById(R.id.list_item)
         database.addValueEventListener(object : ValueEventListener {
@@ -120,17 +125,17 @@ class Show_ListCart : AppCompatActivity() {
                     }
 
                     listItem.adapter = tradeadapter
+                    loadTotal()
                     tradeadapter.setOnItemClickListener(object : Adapter_Cart.onItemClickListener{
 
                         override fun onItemClick(position: Int) {
 
-//                            val intent = Intent(this@Show_ListProduct, Show_Detail::class.java)
-//                            intent.putExtra("product", productArrayList[position].name)
-//                            intent.putExtra("info", info)
-//                            intent.putExtra("type", type)
-//                            intent.putExtra("pertype", pertype)
-//                            startActivity(intent)
-//                            overridePendingTransition(R.anim.slide_blur_right, R.anim.slide_appear_left)
+                            val intent = Intent(this@Show_ListCart, Activity_Abate::class.java)
+                            intent.putExtra("product", cartArrayList[position].name)
+                            intent.putExtra("size", cartArrayList[position].size)
+                            intent.putExtra("info", info)
+                            startActivity(intent)
+                            overridePendingTransition(R.anim.slide_blur_right, R.anim.slide_appear_left)
                         }
                     })
                 }
@@ -147,7 +152,7 @@ class Show_ListCart : AppCompatActivity() {
         var tradeadapter = Adapter_Cart(cartArrayList)
         val info = intent.getStringExtra("info").toString()
 
-        database = FirebaseDatabase.getInstance().getReference("Cart/$info")
+        database = FirebaseDatabase.getInstance().getReference("Cart/$info/List")
 
         val listItem: RecyclerView = findViewById(R.id.list_item)
         database.addValueEventListener(object : ValueEventListener {
@@ -173,16 +178,16 @@ class Show_ListCart : AppCompatActivity() {
 
                         override fun onItemClick(position: Int) {
 
-//                            val intent = Intent(this@Show_ListProduct, Show_Detail::class.java)
-//                            intent.putExtra("product", productArrayList[position].name)
-//                            intent.putExtra("info", info)
-//                            intent.putExtra("type", type)
-//                            intent.putExtra("pertype", pertype)
-//                            startActivity(intent)
-//                            overridePendingTransition(R.anim.slide_blur_right, R.anim.slide_appear_left)
+                            val intent = Intent(this@Show_ListCart, Activity_Abate::class.java)
+                            intent.putExtra("product", cartArrayList[position].name)
+                            intent.putExtra("size", cartArrayList[position].size)
+                            intent.putExtra("info", info)
+                            startActivity(intent)
+                            overridePendingTransition(R.anim.slide_blur_right, R.anim.slide_appear_left)
                         }
                     })
                 }
+                loadTotal()
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
@@ -196,7 +201,7 @@ class Show_ListCart : AppCompatActivity() {
         var tradeadapter = Adapter_Cart(cartArrayList)
         val info = intent.getStringExtra("info").toString()
 
-        database = FirebaseDatabase.getInstance().getReference("Cart/$info")
+        database = FirebaseDatabase.getInstance().getReference("Cart/$info/List")
 
         val listItem: RecyclerView = findViewById(R.id.list_item)
         database.addValueEventListener(object : ValueEventListener {
@@ -223,16 +228,16 @@ class Show_ListCart : AppCompatActivity() {
 
                         override fun onItemClick(position: Int) {
 
-//                            val intent = Intent(this@Show_ListProduct, Show_Detail::class.java)
-//                            intent.putExtra("product", productArrayList[position].name)
-//                            intent.putExtra("info", info)
-//                            intent.putExtra("type", type)
-//                            intent.putExtra("pertype", pertype)
-//                            startActivity(intent)
-//                            overridePendingTransition(R.anim.slide_blur_right, R.anim.slide_appear_left)
+                            val intent = Intent(this@Show_ListCart, Activity_Abate::class.java)
+                            intent.putExtra("product", cartArrayList[position].name)
+                            intent.putExtra("size", cartArrayList[position].size)
+                            intent.putExtra("info", info)
+                            startActivity(intent)
+                            overridePendingTransition(R.anim.slide_blur_right, R.anim.slide_appear_left)
                         }
                     })
                 }
+                loadTotal()
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
@@ -246,7 +251,7 @@ class Show_ListCart : AppCompatActivity() {
         var tradeadapter = Adapter_Cart(cartArrayList)
         val info = intent.getStringExtra("info").toString()
 
-        database = FirebaseDatabase.getInstance().getReference("Cart/$info")
+        database = FirebaseDatabase.getInstance().getReference("Cart/$info/List")
 
         val listItem: RecyclerView = findViewById(R.id.list_item)
         database.addValueEventListener(object : ValueEventListener {
@@ -272,21 +277,36 @@ class Show_ListCart : AppCompatActivity() {
 
                         override fun onItemClick(position: Int) {
 
-//                            val intent = Intent(this@Show_ListProduct, Show_Detail::class.java)
-//                            intent.putExtra("product", productArrayList[position].name)
-//                            intent.putExtra("info", info)
-//                            intent.putExtra("type", type)
-//                            intent.putExtra("pertype", pertype)
-//                            startActivity(intent)
-//                            overridePendingTransition(R.anim.slide_blur_right, R.anim.slide_appear_left)
+                            val intent = Intent(this@Show_ListCart, Activity_Abate::class.java)
+                            intent.putExtra("product", cartArrayList[position].name)
+                            intent.putExtra("size", cartArrayList[position].size)
+                            intent.putExtra("info", info)
+                            startActivity(intent)
+                            overridePendingTransition(R.anim.slide_blur_right, R.anim.slide_appear_left)
                         }
                     })
                 }
+                loadTotal()
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
         })
 
+    }
+
+    private fun loadTotal(){
+
+        val info = intent.getStringExtra("info").toString()
+        val tvtotalprice: TextView = findViewById(R.id.allproduct_price)
+        databaseTotal = FirebaseDatabase.getInstance().getReference("Cart/$info")
+        databaseTotal.child("total").get().addOnSuccessListener {
+
+            if (it.exists()) {
+
+                val availableValue = it.child("total").value.toString()
+                tvtotalprice.setText(availableValue)
+            }
+        }
     }
 }
