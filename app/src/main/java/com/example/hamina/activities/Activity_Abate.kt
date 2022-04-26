@@ -42,7 +42,6 @@ class Activity_Abate : AppCompatActivity() {
 
         val btnBack: ImageButton = findViewById(R.id.btn_back)
         val btnDelete: ImageButton = findViewById(R.id.btn_delete)
-        val btnAddFavourite: ImageButton = findViewById(R.id.btn_addFavourite)
         val btnEdit: ImageButton = findViewById(R.id.btn_edit)
 
         val linkimage: TextView = findViewById(R.id.link_photomain)
@@ -294,17 +293,12 @@ class Activity_Abate : AppCompatActivity() {
                         }
                 }
                 hideDialog()
-                Toast.makeText(this, "Edit succesfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Show_ListCart::class.java)
                 intent.putExtra("info", info)
                 startActivity(intent)
                 overridePendingTransition(R.anim.slide_back, R.anim.slide_back2)
             }
-        }
-
-        btnAddFavourite.setOnClickListener {
-
-            btnAddFavourite.setImageResource(R.drawable.ic_favorite_click_black)
         }
     }
 

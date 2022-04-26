@@ -66,8 +66,8 @@
 
         <ImageView
             android:id="@+id/imageMain"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="230dp"
+            android:layout_height="250dp"
             android:layout_centerHorizontal="true"
 
             android:scaleType="centerCrop"
@@ -81,12 +81,12 @@
             android:layout_below="@id/imageMain"
             android:layout_centerHorizontal="true"
 
-            android:paddingVertical="20dp"
+            android:paddingVertical="10dp"
 
             android:text="Name"
             android:textAllCaps="true"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <RelativeLayout
@@ -94,7 +94,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/product_name"
-
             android:layout_marginBottom="20dp">
 
             <TextView
@@ -169,7 +168,8 @@
             android:id="@+id/setQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/setSize">
+            android:layout_below="@id/setSize"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/title_quantity"
@@ -250,7 +250,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
 
-        android:paddingHorizontal="60dp"
+        android:paddingHorizontal="100dp"
         android:paddingVertical="20dp">
 
         <ImageButton
@@ -258,19 +258,9 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
 
-            android:background="@drawable/status_btn_border_gray"
+            android:background="@drawable/status_btn_border_black"
             android:src="@drawable/ic_delete_black"
             app:tint="@color/black" />
-
-        <ImageButton
-            android:id="@+id/btn_addFavourite"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
-            android:layout_centerInParent="true"
-            android:background="@drawable/status_btn_border_gray"
-            android:src="@drawable/ic_favorite_black"
-            app:tint="@color/black"/>
 
         <ImageButton
             android:id="@+id/btn_edit"
@@ -279,7 +269,7 @@
             android:layout_alignParentEnd="true"
 
             android:layout_centerInParent="true"
-            android:background="@drawable/status_btn_border_gray"
+            android:background="@drawable/status_btn_border_black"
             android:src="@drawable/ic_edit_black"
             app:tint="@color/black"/>
 

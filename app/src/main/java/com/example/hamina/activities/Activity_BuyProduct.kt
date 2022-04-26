@@ -195,7 +195,7 @@ class Activity_BuyProduct : AppCompatActivity() {
 
                         Toast.makeText(
                             this,
-                            "This product has already existed in cart",
+                            "This product has already existed in your cart",
                             Toast.LENGTH_SHORT
                         ).show()
                     } else {

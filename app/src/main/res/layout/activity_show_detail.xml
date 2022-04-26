@@ -24,6 +24,15 @@
 
             android:src="@drawable/ic_arrowback_white"
             android:background="@drawable/status_btnback" />
+
+        <ImageButton
+            android:id="@+id/btn_addFavourite"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/bg_btn_choice_black"
+            android:src="@drawable/ic_favorite_black" />
     </RelativeLayout>
 
     <HorizontalScrollView
@@ -94,9 +103,9 @@
             android:id="@+id/item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-
             android:layout_marginTop="10dp"
+
+            android:gravity="center"
             android:padding="15dp"
 
             android:text="name"
@@ -121,21 +130,56 @@
             android:textSize="15sp"
             android:textStyle="italic" />
 
+        <RelativeLayout
+            android:id="@+id/showPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/item_description"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/item_price"
+
+                android:maxLines="1"
+
+                android:paddingTop="10dp"
+
+                android:text="$ "
+                android:textColor="#B11515"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/item_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+
+                android:maxLines="1"
+
+                android:paddingTop="10dp"
+
+                android:text="price"
+                android:textColor="#B11515"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+
+
         <TextView
-            android:id="@+id/item_price"
+            android:id="@+id/link_photomain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/item_description"
-            android:layout_centerHorizontal="true"
+            android:layout_below="@id/showPrice"
 
-            android:maxLines="1"
+            android:layout_marginBottom="20dp"
 
-            android:paddingTop="10dp"
-
-            android:text="price"
-            android:textColor="#B11515"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:text="Description"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/btn_detail"
