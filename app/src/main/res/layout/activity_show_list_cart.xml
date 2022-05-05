@@ -6,9 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".shows.Show_ListCart"
 
-    android:background="@color/white"
-
-    >
+    android:background="@color/white">
 
     <RelativeLayout
         android:id="@+id/appBar"

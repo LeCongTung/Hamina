@@ -40,7 +40,7 @@ class Show_Detail : AppCompatActivity() {
         val pertype = intent.getStringExtra("pertype").toString()
         val product = intent.getStringExtra("product").toString()
         val info = intent.getStringExtra("info").toString()
-
+        val from = intent.getStringExtra("from").toString()
 
         val nameproduct = type + pertype
         database = FirebaseDatabase.getInstance().getReference(nameproduct)
@@ -65,9 +65,7 @@ class Show_Detail : AppCompatActivity() {
                 Picasso.with(imageBehind.context).load(photobehind).into(imageBehind)
                 Picasso.with(imageDetail.context).load(photodetail).into(imageDetail)
                 Picasso.with(imageModel.context).load(photomodel).into(imageModel)
-
-            } else
-                Toast.makeText(this, "This item hasn't existed", Toast.LENGTH_SHORT).show()
+            }
         }.addOnFailureListener {
             Toast.makeText(
                 this,
@@ -85,15 +83,30 @@ class Show_Detail : AppCompatActivity() {
             }
         }
 
-        btnBack.setOnClickListener {
+        if (from.equals("fromFavourite")){
 
-            val intent = Intent(this, Show_ListProduct::class.java)
-            intent.putExtra("type", type)
-            intent.putExtra("pertype", pertype)
-            intent.putExtra("info", info)
-            startActivity(intent)
-            overridePendingTransition(R.anim.slide_back, R.anim.slide_back2)
+            btnBack.setOnClickListener {
+
+                val intent = Intent(this, Show_ListFavourite::class.java)
+                intent.putExtra("info", info)
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_back, R.anim.slide_back2)
+            }
+
+
+        }else{
+
+            btnBack.setOnClickListener {
+
+                val intent = Intent(this, Show_ListProduct::class.java)
+                intent.putExtra("type", type)
+                intent.putExtra("pertype", pertype)
+                intent.putExtra("info", info)
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_back, R.anim.slide_back2)
+            }
         }
+
 
         btnDetail.setOnClickListener {
 
@@ -102,6 +115,7 @@ class Show_Detail : AppCompatActivity() {
             intent.putExtra("pertype", pertype)
             intent.putExtra("product", product)
             intent.putExtra("info", info)
+            intent.putExtra("from", from)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_blur_right, R.anim.slide_appear_left)
         }
@@ -112,7 +126,7 @@ class Show_Detail : AppCompatActivity() {
             val price = tvproductprice.text.toString().toInt()
             val linkimage = linkImage.text.toString().trim()
 
-            val favourite = Favourite(product, description, linkimage, nameproduct, price)
+            val favourite = Favourite(product, description, linkimage, type, pertype, price)
 
             databaseFavourite.child(product).get().addOnSuccessListener {
 

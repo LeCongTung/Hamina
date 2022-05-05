@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.Activity_AddMoney">
+
+    <RelativeLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:translationZ="90dp">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+
+            android:background="@drawable/status_btnback"
+            android:src="@drawable/ic_arrowback_white" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/titleLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appBar"
+
+        android:layout_marginVertical="10dp"
+        android:layout_marginStart="20dp"
+
+        android:text="Bill's details"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/demoCard"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/titleLayout"
+        android:layout_centerHorizontal="true"
+
+        android:padding="30dp"
+
+        android:background="@drawable/bg_creditcard">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Hamina Banking"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+
+            android:src="@drawable/img_mastercard"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentBottom="true"
+
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/firstid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:text="000"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:letterSpacing="0.3"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/secondtid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:text="000"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:letterSpacing="0.3"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/thirdtid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:text="00"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:letterSpacing="0.3"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/fourthtid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:text="00"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:letterSpacing="0.3"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="30dp"
+
+        android:layout_below="@id/demoCard">
+
+        <EditText
+            android:id="@+id/addMoney"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/status_btn_border_black"
+            android:inputType="number"
+
+            android:paddingHorizontal="30dp"
+
+            android:paddingVertical="15dp"
+            android:hint="0"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addMoney"
+
+            android:layout_marginTop="20dp"
+
+            android:text="Your information"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/title_youhave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+
+            android:layout_marginTop="30dp"
+            android:paddingStart="20dp"
+
+            android:text="You have:"
+            android:textAlignment="center"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/user_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_alignParentEnd="true"
+
+            android:layout_marginTop="30dp"
+            android:paddingEnd="20dp"
+
+            android:text="000"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/title_addmoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_money"
+            android:layout_marginTop="30dp"
+
+            android:layout_toLeftOf="@id/display_addmoney"
+            android:paddingEnd="10dp"
+
+            android:text="+"
+            android:textAlignment="center"
+            android:textColor="@color/green" />
+
+        <TextView
+            android:id="@+id/display_addmoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_money"
+            android:layout_alignParentEnd="true"
+
+            android:layout_marginTop="30dp"
+            android:paddingEnd="20dp"
+
+            android:text="0"
+            android:textAlignment="center"
+            android:textColor="@color/green"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/display_finalmoney"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/btn_addMoney"
+
+            android:layout_marginBottom="20dp"
+
+            android:text="000"
+            android:textAlignment="center"
+            android:textColor="@color/green"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_addMoney"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+
+            android:background="@drawable/status_btnback"
+
+            android:text="Add"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+</RelativeLayout>

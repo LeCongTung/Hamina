@@ -11,15 +11,21 @@ import com.example.hamina.shows.Show_Detail
 import com.example.hamina.shows.Show_ListCart
 import com.example.hamina.shows.Show_ListProduct
 import com.example.hamina.units.Cart
+import com.example.hamina.units.CurrentID
 import com.example.hamina.units.TotalPrice
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
+import java.text.SimpleDateFormat
+import java.util.*
 
 class Activity_Abate : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
     private lateinit var databaseTotal: DatabaseReference
+
+    private lateinit var databaseCurrent: DatabaseReference
+    private lateinit var databaseBillDetail: DatabaseReference
     private lateinit var dialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +61,8 @@ class Activity_Abate : AppCompatActivity() {
 
         database = FirebaseDatabase.getInstance().getReference("Cart/$info/List")
         databaseTotal = FirebaseDatabase.getInstance().getReference("Cart/$info")
+
+        databaseCurrent = FirebaseDatabase.getInstance().getReference("History/$info")
 
         val nameproduct = product + "_" + size
         database.child(nameproduct).get().addOnSuccessListener {
@@ -202,11 +210,12 @@ class Activity_Abate : AppCompatActivity() {
             showDialog()
             database.child(saveName).get().addOnSuccessListener {
 
-                btnEdit.setImageResource(R.drawable.ic_edit_click_black)
                 database.child(nameproduct).removeValue().addOnSuccessListener {}
                 database.child(saveName).setValue(cart).addOnCompleteListener {
                     if (it.isSuccessful) {
 
+                        btnEdit.setImageResource(R.drawable.ic_edit_click_black)
+                        btnEdit.setBackgroundResource(R.drawable.bg_btn_choice_black)
                         databaseTotal.child("total").get().addOnSuccessListener {
 
                             if (it.exists()) {
@@ -240,10 +249,28 @@ class Activity_Abate : AppCompatActivity() {
                             startActivity(intent)
                             overridePendingTransition(R.anim.slide_back, R.anim.slide_back2)
                         }
-                    } else {
+
+                        } else {
 
                         Toast.makeText(this, "Failed to edit", Toast.LENGTH_SHORT)
                             .show()
+                    }
+
+//                            Add to history before save
+                    databaseCurrent.child("currentID").get().addOnSuccessListener {
+
+                        if (it.exists()) {
+
+                            val cID = it.child("id").value.toString().trim()
+                            databaseBillDetail = FirebaseDatabase.getInstance().getReference("History/$info/Detail/$cID")
+                            databaseBillDetail.child(nameproduct).removeValue().addOnSuccessListener {}
+                            databaseBillDetail.child(saveName).setValue(cart).addOnCompleteListener{
+
+                                if (it.isSuccessful) {
+
+                                } else { Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show() }
+                            }
+                        }
                     }
                 }.addOnFailureListener {
                     Toast.makeText(this, "Fail to connect!", Toast.LENGTH_SHORT).show()
@@ -263,6 +290,7 @@ class Activity_Abate : AppCompatActivity() {
         btnDelete.setOnClickListener {
 
             btnDelete.setImageResource(R.drawable.ic_delete_click_black)
+            btnDelete.setBackgroundResource(R.drawable.bg_btn_choice_black)
             database.child(nameproduct).removeValue().addOnSuccessListener {}
             showDialog()
             databaseTotal.child("total").get().addOnSuccessListener {
@@ -288,10 +316,20 @@ class Activity_Abate : AppCompatActivity() {
                             }
                         }.addOnFailureListener {
 
-                            Toast.makeText(this, "Fail to connect!", Toast.LENGTH_SHORT)
-                                .show()
+                            Toast.makeText(this, "Fail to connect!", Toast.LENGTH_SHORT).show()
                         }
                 }
+
+                databaseCurrent.child("currentID").get().addOnSuccessListener {
+
+                    if (it.exists()) {
+
+                        val cID = it.child("id").value.toString().trim()
+                        databaseBillDetail = FirebaseDatabase.getInstance().getReference("History/$info/Detail/$cID")
+                        databaseBillDetail.child(nameproduct).removeValue().addOnSuccessListener {}
+                    }
+                }
+
                 hideDialog()
                 Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Show_ListCart::class.java)

@@ -10,9 +10,13 @@ import com.example.hamina.R
 import com.example.hamina.shows.Show_Detail
 import com.example.hamina.shows.Show_ListProduct
 import com.example.hamina.units.Cart
+import com.example.hamina.units.CurrentID
+import com.example.hamina.units.Product
 import com.example.hamina.units.TotalPrice
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class Activity_BuyProduct : AppCompatActivity() {
@@ -20,6 +24,9 @@ class Activity_BuyProduct : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private lateinit var databaseCart: DatabaseReference
     private lateinit var databaseTotal: DatabaseReference
+
+    private lateinit var databaseCurrent: DatabaseReference
+    private lateinit var databaseBillDetail: DatabaseReference
     private lateinit var dialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,12 +60,15 @@ class Activity_BuyProduct : AppCompatActivity() {
         val pertype = intent.getStringExtra("pertype").toString()
         val product = intent.getStringExtra("product").toString()
         val info = intent.getStringExtra("info").toString()
+        val from = intent.getStringExtra("from").toString()
 
         val nameproduct = type + pertype
         database = FirebaseDatabase.getInstance().getReference(nameproduct)
 
         databaseCart = FirebaseDatabase.getInstance().getReference("Cart/$info/List")
         databaseTotal = FirebaseDatabase.getInstance().getReference("Cart/$info")
+
+        databaseCurrent = FirebaseDatabase.getInstance().getReference("History/$info")
 
         database.child(product).get().addOnSuccessListener {
 
@@ -72,6 +82,31 @@ class Activity_BuyProduct : AppCompatActivity() {
                 val madein = it.child("madein").value.toString().trim()
                 val price = it.child("price").value.toString().trim()
                 val photomain = it.child("photomain").value.toString().trim()
+                val photobehind = it.child("photobehind").value.toString().trim()
+                val photodetail = it.child("photodetail").value.toString().trim()
+                val photomodel = it.child("photomodel").value.toString().trim()
+                var view = it.child("view").value.toString().toInt()
+
+                val valuePrice = price.toInt()
+                view += 1
+                val productlist = Product(
+                    name,
+                    colormain,
+                    colorsecond,
+                    description,
+                    madein,
+                    material,
+                    photomain,
+                    photobehind,
+                    photodetail,
+                    photomodel,
+                    valuePrice,
+                    view
+                )
+                database.child(product).setValue(productlist).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                    }
+                }
 
                 tvproductname.setText(name)
                 tvproductdescription.setText(description)
@@ -129,6 +164,7 @@ class Activity_BuyProduct : AppCompatActivity() {
             intent.putExtra("pertype", pertype)
             intent.putExtra("product", product)
             intent.putExtra("info", info)
+            intent.putExtra("from", from)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_back, R.anim.slide_back2)
         }
@@ -186,6 +222,9 @@ class Activity_BuyProduct : AppCompatActivity() {
                 val linkimage = linkimage.text.toString().trim()
 
                 val cart = Cart(name, valueSize, linkimage, quantity, total)
+
+                val idTrue = getID()
+                val currentid = CurrentID(idTrue)
                 val saveName = name + "_" + valueSize
 
                 showDialog()
@@ -202,6 +241,7 @@ class Activity_BuyProduct : AppCompatActivity() {
                         databaseCart.child(saveName).setValue(cart).addOnCompleteListener {
                             if (it.isSuccessful) {
 
+//                                Calculate all price of products in cart
                                 databaseTotal.child("total").get().addOnSuccessListener {
 
                                     if (it.exists()) {
@@ -210,7 +250,8 @@ class Activity_BuyProduct : AppCompatActivity() {
                                         availableValue += total
                                         val totalprice = TotalPrice(availableValue)
 
-                                        databaseTotal.child("total").setValue(totalprice).addOnCompleteListener {
+                                        databaseTotal.child("total").setValue(totalprice)
+                                            .addOnCompleteListener {
                                                 if (it.isSuccessful) {
 
                                                 } else {
@@ -222,31 +263,61 @@ class Activity_BuyProduct : AppCompatActivity() {
                                                     ).show()
                                                 }
                                             }.addOnFailureListener {
-                                                Toast.makeText(this, "Fail to connect!", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(this, "Fail to connect!", Toast.LENGTH_SHORT).show()
                                         }
-                                    }else{
+                                    } else {
 
                                         val totalprice = TotalPrice(total)
-                                        databaseTotal.child("total").setValue(totalprice).addOnCompleteListener {
-                                            if (it.isSuccessful) {
+                                        databaseTotal.child("total").setValue(totalprice)
+                                            .addOnCompleteListener {
+                                                if (it.isSuccessful) {
 
-                                            } else {
+                                                } else {
 
-                                                Toast.makeText(
-                                                    this,
-                                                    "Failed to add to cart",
-                                                    Toast.LENGTH_SHORT
-                                                ).show()
-                                            }
-                                        }.addOnFailureListener {
+                                                    Toast.makeText(
+                                                        this,
+                                                        "Failed to add to cart",
+                                                        Toast.LENGTH_SHORT
+                                                    ).show()
+                                                }
+                                            }.addOnFailureListener {
                                             Toast.makeText(this, "Fail to connect!", Toast.LENGTH_SHORT).show()
                                         }
                                     }
                                 }
-                            } else {
 
-                                Toast.makeText(this, "Failed to add to cart", Toast.LENGTH_SHORT)
-                                    .show()
+                            } else {
+                                Toast.makeText(this, "Failed to add to cart", Toast.LENGTH_SHORT).show()
+                            }
+
+//                            Add to history before save
+                            databaseCurrent.child("currentID").get().addOnSuccessListener {
+
+                                if (it.exists()) {
+
+                                    val cID = it.child("id").value.toString().trim()
+                                    databaseBillDetail = FirebaseDatabase.getInstance().getReference("History/$info/Detail/$cID")
+                                    databaseBillDetail.child(saveName).setValue(cart).addOnCompleteListener{
+
+                                        if (it.isSuccessful) {
+
+                                        } else { Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show() }
+                                    }
+                                }else{
+
+                                    databaseCurrent.child("currentID").setValue(currentid).addOnCompleteListener{
+
+                                        if (it.isSuccessful) {
+                                        } else { Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show() }
+                                    }
+
+                                    databaseBillDetail = FirebaseDatabase.getInstance().getReference("History/$info/Detail/$idTrue")
+                                    databaseBillDetail.child(saveName).setValue(cart).addOnCompleteListener{
+
+                                        if (it.isSuccessful) {
+                                        } else { Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show() }
+                                    }
+                                }
                             }
                         }.addOnFailureListener {
                             Toast.makeText(
@@ -313,6 +384,7 @@ class Activity_BuyProduct : AppCompatActivity() {
         }
     }
 
+    //    Dialog
     private fun showDialog() {
 
         dialog = Dialog(this)
@@ -327,4 +399,12 @@ class Activity_BuyProduct : AppCompatActivity() {
         dialog.dismiss()
     }
 
+    //    Get id from date
+    private fun getID(): String {
+
+        val formatname = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss:SS", Locale.getDefault())
+        val now = Date()
+        var filename = "HD" + formatname.format(now)
+        return filename
+    }
 }

@@ -4,17 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".shows.Show_ListFavourite"
-
-    android:background="@color/white">
+    tools:context=".shows.Show_ListHistory">
 
     <RelativeLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
 
-        android:layout_marginVertical="20dp"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
 
         android:translationZ="90dp">
 
@@ -25,34 +23,6 @@
 
             android:background="@drawable/status_btnback"
             android:src="@drawable/ic_arrowback_white" />
-
-        <ImageView
-            android:id="@+id/btn_sortletter"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_centerVertical="true"
-            android:layout_marginHorizontal="10dp"
-
-            android:layout_toLeftOf="@id/btn_sortprice"
-            android:background="@drawable/status_btnwhite"
-
-            android:paddingVertical="5dp"
-            android:src="@drawable/ic_sortletter_black"
-            app:tint="@color/black" />
-
-        <ImageView
-            android:id="@+id/btn_sortprice"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-
-            android:layout_marginHorizontal="10dp"
-            android:background="@drawable/status_btnwhite"
-
-            android:paddingVertical="5dp"
-            android:src="@drawable/ic_price_increase_black"
-            app:tint="@color/black" />
     </RelativeLayout>
 
     <TextView
@@ -65,7 +35,7 @@
         android:layout_marginBottom="10dp"
         android:paddingHorizontal="20dp"
 
-        android:text="Favourite"
+        android:text="History"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold" />
@@ -79,10 +49,10 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="10dp"
 
-        android:paddingTop="10dp"
-
         android:clipToPadding="false"
+
+        android:paddingTop="10dp"
         android:scrollbars="none"
 
-        tools:listitem="@layout/item_favourite" />
+        tools:listitem="@layout/item_history" />
 </RelativeLayout>

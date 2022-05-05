@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".layouts.Layout_Information"
+
+    android:background="@color/bgColor">
+
+    <RelativeLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:translationZ="90dp">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+
+            android:background="@drawable/status_btnback"
+            android:src="@drawable/ic_arrowback_white" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appBar"
+
+        android:orientation="vertical"
+
+        android:paddingHorizontal="30dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp"
+
+            android:layout_marginBottom="30dp"
+
+
+            app:cardBackgroundColor="@color/white">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:paddingHorizontal="20dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/profile_image"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_centerVertical="true"
+
+                    android:layout_marginBottom="30dp"
+
+                    android:src="@drawable/logo_hamina" />
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="60dp"
+                    android:layout_toRightOf="@id/profile_image"
+
+                    android:paddingStart="20dp"
+
+                    android:text="name"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/user_cih"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/user_name"
+                    android:layout_toRightOf="@id/profile_image"
+
+                    android:paddingTop="10dp"
+                    android:paddingStart="20dp"
+
+                    android:text="cih"
+                    android:textColor="@color/green"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/btn_toProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+
+                    android:layout_marginBottom="20dp"
+                    android:paddingStart="30dp"
+
+                    android:background="@drawable/status_btnback"
+                    android:drawableStart="@drawable/ic_user_white"
+                    android:drawablePadding="30dp"
+
+                    android:text="User profile"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/btn_addMoney"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+
+                    android:layout_marginBottom="20dp"
+                    android:paddingStart="30dp"
+
+                    android:background="@drawable/status_btnback"
+                    android:drawableStart="@drawable/ic_money_white"
+                    android:drawablePadding="30dp"
+
+                    android:text="My wallet"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/btn_toFavourite"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+
+                    android:layout_marginBottom="20dp"
+                    android:paddingStart="30dp"
+
+                    android:background="@drawable/status_btnback"
+                    android:drawableStart="@drawable/ic_favourite_click_white"
+                    android:drawablePadding="30dp"
+
+                    android:text="Favourite products"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/btn_toHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+
+                    android:layout_marginBottom="20dp"
+                    android:paddingStart="30dp"
+
+                    android:background="@drawable/status_btnback"
+                    android:drawableStart="@drawable/ic_check_white"
+                    android:drawablePadding="30dp"
+
+                    android:text="History"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/btn_toChat"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+
+                    android:layout_marginBottom="20dp"
+                    android:paddingStart="30dp"
+
+                    android:background="@drawable/status_btnback"
+                    android:drawableStart="@drawable/ic_chat_white"
+                    android:drawablePadding="30dp"
+
+                    android:text="Messenger"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/btn_logOut"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+
+                    android:layout_marginBottom="20dp"
+                    android:paddingStart="30dp"
+
+                    android:background="@drawable/status_btnback"
+                    android:drawableStart="@drawable/ic_signout_white"
+                    android:drawablePadding="30dp"
+
+                    android:text="Log out"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/content"
+
+        android:background="@color/purple_500">
+
+
+    </RelativeLayout>
+</RelativeLayout>

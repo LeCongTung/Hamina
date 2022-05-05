@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".layouts.Layout_GoodBye"
+
+    android:padding="30dp">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationGIF"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+
+        android:layout_centerInParent="true"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/goodbye" />
+
+    <TextView
+        android:id="@+id/messenger"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/animationGIF"
+
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+
+        android:text="See you later\nI hope to see you again!"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:lineHeight="30dp"/>
+</RelativeLayout>

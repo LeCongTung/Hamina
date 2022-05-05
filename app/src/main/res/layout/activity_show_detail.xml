@@ -168,8 +168,6 @@
                 android:textStyle="bold" />
         </RelativeLayout>
 
-
-
         <TextView
             android:id="@+id/link_photomain"
             android:layout_width="wrap_content"

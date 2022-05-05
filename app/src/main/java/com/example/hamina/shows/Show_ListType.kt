@@ -3,6 +3,7 @@ package com.example.hamina.shows
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.recyclerview.widget.GridLayoutManager
@@ -10,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hamina.R
 import com.example.hamina.adapters.Adapter_Type
 import com.example.hamina.layouts.Layout_Home
+import com.example.hamina.layouts.Layout_Information
 import com.example.hamina.layouts.Layout_Notification
+import com.example.hamina.layouts.Layout_Store
 import com.example.hamina.units.Type
 import com.google.firebase.database.*
 
@@ -25,10 +28,12 @@ class Show_ListType : AppCompatActivity() {
 
 //      Init
         val btnHome: ImageButton = findViewById(R.id.home)
+        val btnStore: Button = findViewById(R.id.store)
         val btnNotification: ImageButton = findViewById(R.id.notification)
         val listItem: RecyclerView = findViewById(R.id.list_item)
 
         val btnCart: ImageView = findViewById(R.id.btn_cart)
+        val btnInformation: ImageView = findViewById(R.id.btn_userprofile)
 
 //        Get info user
         val type = intent.getStringExtra("type").toString()
@@ -39,6 +44,14 @@ class Show_ListType : AppCompatActivity() {
         btnHome.setOnClickListener {
 
             val intent = Intent(this, Layout_Home::class.java)
+            intent.putExtra("info", info)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_blur, R.anim.slide_blur)
+        }
+
+        btnStore.setOnClickListener {
+
+            val intent = Intent(this, Layout_Store::class.java)
             intent.putExtra("info", info)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_blur, R.anim.slide_blur)
@@ -59,6 +72,15 @@ class Show_ListType : AppCompatActivity() {
             intent.putExtra("info", info)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_blur_right, R.anim.slide_appear_left)
+        }
+
+        btnInformation.setOnClickListener{
+
+            val intent = Intent(this, Layout_Information::class.java)
+            intent.putExtra("info", info)
+            intent.putExtra("type", type)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_back, R.anim.slide_back2)
         }
 
         listItem.setHasFixedSize(true)

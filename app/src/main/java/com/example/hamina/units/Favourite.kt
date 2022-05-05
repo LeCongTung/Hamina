@@ -6,5 +6,6 @@ data class Favourite(
     val description: String ?= null,
     val photomain: String ?= null,
     val type: String ?= null,
+    val pertype: String ?= null,
     val price: Int ?= null
 )

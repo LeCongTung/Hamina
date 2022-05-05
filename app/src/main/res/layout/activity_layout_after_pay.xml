@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".layouts.Layout_AfterPay"
+
+    android:padding="30dp">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationGIF"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+
+        android:layout_centerInParent="true"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/delivery_boy" />
+
+    <TextView
+        android:id="@+id/messenger"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/animationGIF"
+
+        android:layout_marginTop="10dp"
+
+        android:text="Thank you"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_complete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+
+        android:background="@drawable/status_btnback"
+
+        android:text="Back to store"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
+</RelativeLayout>

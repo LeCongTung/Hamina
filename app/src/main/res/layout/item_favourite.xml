@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:layout_height="150dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     app:cardCornerRadius="20dp"
@@ -14,14 +14,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:paddingStart="10dp"
-
         android:background="#F3F3F5">
 
         <ImageView
             android:id="@+id/item_image"
             android:layout_width="150dp"
-            android:layout_height="160dp"
+            android:layout_height="150dp"
 
             android:scaleType="centerCrop"
 
@@ -42,32 +40,19 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/item_quantity"
+            android:id="@+id/item_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/item_name"
             android:layout_marginTop="10dp"
 
             android:layout_toRightOf="@id/item_image"
-            android:maxLines="1"
+            android:maxLines="2"
 
-            android:paddingStart="30dp"
-            android:text="Quantity"
+            android:paddingHorizontal="20dp"
+            android:text="Description"
             android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/item_size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/item_quantity"
-            android:layout_marginTop="10dp"
-
-            android:layout_toRightOf="@id/item_image"
-            android:maxLines="1"
-
-            android:paddingStart="30dp"
-            android:text="Quantity"
-            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/item_total"
@@ -81,7 +66,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
             android:maxLines="1"
-            android:text="Size"
+            android:text="Price"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />

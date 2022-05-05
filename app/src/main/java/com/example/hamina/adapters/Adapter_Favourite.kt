@@ -7,10 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hamina.R
-import com.example.hamina.units.Cart
+import com.example.hamina.units.Favourite
 import com.squareup.picasso.Picasso
 
-class Adapter_Cart(private val list: ArrayList<Cart>): RecyclerView.Adapter<Adapter_Cart.MyViewHolder>() {
+class Adapter_Favourite(private val list: ArrayList<Favourite>): RecyclerView.Adapter<Adapter_Favourite.MyViewHolder>() {
 
     //    Choice a product in type
     private lateinit var mListener: onItemClickListener
@@ -27,7 +27,7 @@ class Adapter_Cart(private val list: ArrayList<Cart>): RecyclerView.Adapter<Adap
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_cart, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_favourite, parent, false)
         return MyViewHolder(itemView, mListener)
     }
 
@@ -35,9 +35,8 @@ class Adapter_Cart(private val list: ArrayList<Cart>): RecyclerView.Adapter<Adap
 
         val currentitem = list[position]
         holder.itemname.text = currentitem.name
-        holder.itemquantity.text = "Quantity: " + currentitem.quantity.toString()
-        holder.itemsize.text = "Size: " + currentitem.size.toString()
-        holder.itemtotal.text = "$" + currentitem.total.toString()
+        holder.itemdescription.text = currentitem.description.toString()
+        holder.itemprice.text = "$" + currentitem.price.toString()
         Picasso.with(holder.itemimage.context).load(currentitem.photomain).into(holder.itemimage)
     }
 
@@ -48,9 +47,8 @@ class Adapter_Cart(private val list: ArrayList<Cart>): RecyclerView.Adapter<Adap
     class MyViewHolder(itemView: View, listener: onItemClickListener): RecyclerView.ViewHolder(itemView){
 
         val itemname: TextView = itemView.findViewById(R.id.item_name)
-        val itemquantity: TextView = itemView.findViewById(R.id.item_quantity)
-        val itemsize: TextView = itemView.findViewById(R.id.item_size)
-        val itemtotal: TextView = itemView.findViewById(R.id.item_total)
+        val itemdescription: TextView = itemView.findViewById(R.id.item_description)
+        val itemprice: TextView = itemView.findViewById(R.id.item_total)
         val itemimage: ImageView = itemView.findViewById(R.id.item_image)
 
         init {

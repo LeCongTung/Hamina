@@ -25,7 +25,6 @@ class Layout_Home : AppCompatActivity() {
         val btnStore: ImageButton = findViewById(R.id.store)
         val btnNotification: ImageButton = findViewById(R.id.notification)
 
-
 //        Get info user
         val info = intent.getStringExtra("info").toString()
 //        database = FirebaseDatabase.getInstance().getReference(info.toString())
@@ -46,7 +45,6 @@ class Layout_Home : AppCompatActivity() {
             intent.putExtra("info", info)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_blur, R.anim.slide_blur)
-
         }
     }
 

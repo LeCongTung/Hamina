@@ -3,6 +3,7 @@ package com.example.hamina.layouts
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
@@ -28,6 +29,7 @@ class Layout_Store : AppCompatActivity() {
         val btnChoiceJewelry: CardView = findViewById(R.id.choiceJewelry)
 
         val btnCart: ImageView = findViewById(R.id.btn_cart)
+        val btnInformation: ImageView = findViewById(R.id.btn_userprofile)
 
 //      Get info user
         val info = intent.getStringExtra("info").toString()
@@ -56,6 +58,14 @@ class Layout_Store : AppCompatActivity() {
             intent.putExtra("info", info)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_blur_right, R.anim.slide_appear_left)
+        }
+
+        btnInformation.setOnClickListener{
+
+            val intent = Intent(this, Layout_Information::class.java)
+            intent.putExtra("info", info)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_back, R.anim.slide_back2)
         }
 
 //        Choice type to buy clothes

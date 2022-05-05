@@ -18,6 +18,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hamina">
         <activity
+            android:name=".shows.Show_User"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Activity_AddMoney"
+            android:exported="false" />
+        <activity
+            android:name=".shows.Show_ListBill"
+            android:exported="false" />
+        <activity
+            android:name=".shows.Show_ListHistory"
+            android:exported="false" />
+        <activity
+            android:name=".layouts.Layout_GoodBye"
+            android:exported="false" />
+        <activity
+            android:name=".layouts.Layout_AfterPay"
+            android:exported="false" />
+        <activity
+            android:name=".layouts.Layout_Information"
+            android:exported="false" />
+        <activity
             android:name=".shows.Show_ListFavourite"
             android:exported="false" />
         <activity
